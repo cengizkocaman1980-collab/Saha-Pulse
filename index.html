@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Saha Pulse · Envanter ve Günlük Hareketler</title>
+
+<meta name="theme-color" content="#10243b">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+<style>
+:root{--navy:#0b192c;--blue:#ea580c;--ink:#090d16;--muted:#1f2937;--line:#dce3ec;--bg:#f3f6fb;--green:#0e5e41;--red:#961810;--amber:#824500}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:600 17px/1.5 Arial,sans-serif}
+header{background:linear-gradient(120deg,#10243b,#1c4265);color:#fff;padding:20px 15px;border-bottom:4px solid #f97316}
+.head,.wrap{max-width:980px;margin:auto}.head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.brand{font-size:28px;font-weight:800;letter-spacing:1px}.brand span{color:#fb923c}.sub{font-size:15px;color:#e8f0fa;margin-top:4px}.tag{font-size:13px;border:1px solid #85a5c4;border-radius:20px;padding:7px 12px;color:#ffffff;font-weight:700}
+.wrap{padding:14px}.notice{background:#fff7ed;border:1px solid #fed7aa;padding:13px 15px;border-radius:11px;font-size:14.5px;line-height:1.5;margin:10px 0;color:#111827;font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat,.panel,.item{background:white;border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 3px 12px rgba(25,48,78,.04)}.stat small{color:var(--muted);font-size:14px;font-weight:700}.stat b{display:block;font-size:28px;margin-top:5px;color:var(--navy)}
+.panel{margin:12px 0}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.filters button{border:0;border-radius:10px;padding:11px 14px;background:#e4ecf7;color:#090d16;font-size:15.5px;font-weight:800}.filters button.active{background:var(--blue);color:white}
+.navtabs{display:flex;gap:8px;margin:12px 0}.navtabs button{flex:1;padding:13px;font-size:16.5px;font-weight:800}.navtabs button.active{background:var(--blue);color:#fff}.page-title{display:flex;align-items:center;justify-content:space-between;gap:8px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;color:#090d16;font:600 17px Arial}textarea{min-height:68px;resize:vertical}label{display:block;font-size:15px;color:#111827;font-weight:800;margin:10px 0 5px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{border:0;border-radius:10px;padding:11px 14px;background:#e4ecf7;color:#090d16;font-size:15px;font-weight:800;cursor:pointer}.primary{background:var(--blue);color:white}.danger{background:#ffeded;color:var(--red)}.muted{font-size:14.5px;color:var(--muted);font-weight:600}h3{margin:2px 0 11px;color:var(--navy);font-size:20px;font-weight:800}
+.items{display:grid;gap:10px}.item{padding:15px}.itemtop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.itemname{font-weight:800;font-size:18px;color:#090d16}.qty{font-size:21px;font-weight:800;white-space:nowrap;color:#090d16}.meta{font-size:15px;color:#111827;font-weight:600;line-height:1.6;margin-top:7px}.pill{display:inline-block;border-radius:20px;padding:5px 10px;font-size:13px;font-weight:800;background:#e2f3eb;color:var(--green);margin:5px 5px 0 0}.pill.e{background:#ffedd5;color:#b83808}.pill.bad{background:#ffe9e5;color:var(--red)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}.actions .permanent-delete{margin-left:auto}.history{margin-top:10px;border-top:1px solid var(--line);padding-top:10px;background:#fffaf5;border-radius:9px;padding:11px}.logrow{font-size:14.5px;color:#090d16;font-weight:600;padding:8px 0;border-bottom:1px solid #e2e8f0}.hidden{display:none}.modal.hidden{display:none}.modal{position:fixed;inset:0;background:#10243b99;display:flex;align-items:center;justify-content:center;padding:14px;z-index:50}.modalbox{background:#fff;border-radius:16px;padding:18px;width:min(560px,100%);max-height:90vh;overflow:auto;box-shadow:0 18px 60px #0004}.empty{text-align:center;color:var(--muted);padding:20px;font-size:16px}
+.viewbar{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:8px 0}.viewbar button.active{background:var(--blue);color:#fff}.compact-table{width:100%;border-collapse:collapse;background:#fff;font-size:16px;color:#090d16}.compact-table th,.compact-table td{padding:11px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}.compact-table th{color:#090d16;font-weight:800;background:#f1f5f9;position:sticky;top:0;font-size:15.5px}.compact-table td.qtycell{text-align:right;font-weight:800;white-space:nowrap;color:#090d16;font-size:17px}.compact-row{background:#fff;cursor:pointer}.compact-row:hover{background:#fff7ed}.compact-row:focus{outline:2px solid var(--blue);outline-offset:-2px}.compact-detail{background:#fffaf5}.compact-detail td{padding:12px}.compact-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:11px}.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#15966b;margin-right:6px}.status-dot.bad{background:#c7352b}.daily-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.daily-grid>div{min-width:0}.daily-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}@media(max-width:600px){.daily-grid{grid-template-columns:1fr 1fr}.compact-table th,.compact-table td{padding:10px 7px;font-size:15px}}.status-fields{display:flex;gap:14px;flex-wrap:wrap;padding:8px 0}.status-fields label{display:flex;align-items:center;gap:6px;margin:0;font-size:16px;color:#090d16}.status-fields input{width:auto;margin:0}.status-note{margin-top:6px}.pill.field{background:#ffedd5;color:#b83808}.pill.repair{background:#fff3db;color:#854b00}.pill.muted{background:#e5e9f0;color:#111827}.smalltitle{font-size:14px;font-weight:800;color:#111827;text-transform:uppercase;letter-spacing:.4px}
+@media(max-width:600px){.wrap{padding:10px}.grid{grid-template-columns:1fr}.stats{gap:6px}.stat{padding:10px}.stat b{font-size:24px}.itemtop{gap:7px}.qty{font-size:19px}}
+
+.settings-trigger{border:1px solid #8fb4d8;background:#173b5c;color:#fff;border-radius:10px;padding:10px 13px;font-size:15px;font-weight:800;cursor:pointer}
+.settings-overlay{position:fixed;inset:0;background:#0b1728a8;z-index:10020;display:none;align-items:center;justify-content:center;padding:16px}
+.settings-dialog{width:min(100%,460px);background:#fff;color:#090d16;border-radius:16px;padding:18px;box-shadow:0 18px 55px #0004}
+.settings-dialog h2{margin:0 0 14px;font-size:22px}
+.settings-row{display:grid;gap:6px;margin:13px 0}
+.settings-row label{font-weight:800}
+.settings-row select{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;color:#090d16}
+.settings-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
+.settings-actions button{padding:10px 14px;border-radius:9px;border:1px solid #cbd5e1;background:#f8fafc;font-weight:800;color:#090d16}
+.settings-actions .primary{background:#ea580c;color:white;border-color:#ea580c}
+.settings-note{font-size:14.5px;color:#1f2937;line-height:1.5}
+body[data-theme="forest"]{--navy:#113b2e;--blue:#16845d;--ink:#091a14;--bg:#f1f7f3}
+body[data-theme="purple"]{--navy:#2c1d4a;--blue:#7651c8;--ink:#120d1c;--bg:#f6f3fb}
+body[data-theme="slate"]{--navy:#1c2736;--blue:#526b86;--ink:#0c1117;--bg:#f1f4f7}
+
+.row-color-red{background:#ffe4e2 !important;box-shadow:inset 5px 0 0 #dc2626}
+.row-color-red:hover{background:#ffd2ce !important}
+.row-color-amber{background:#ffedd5 !important;box-shadow:inset 5px 0 0 #ea580c}
+.row-color-amber:hover{background:#fed7aa !important}
+.row-color-yellow{background:#fef9c3 !important;box-shadow:inset 5px 0 0 #ca8a04}
+.row-color-yellow:hover{background:#fef08a !important}
+.row-color-green{background:#dcfce7 !important;box-shadow:inset 5px 0 0 #16a34a}
+.row-color-green:hover{background:#bbf7d0 !important}
+.row-color-blue{background:#dbeafe !important;box-shadow:inset 5px 0 0 #2563eb}
+.row-color-blue:hover{background:#bfdbfe !important}
+.row-color-purple{background:#f3e8ff !important;box-shadow:inset 5px 0 0 #9333ea}
+.row-color-purple:hover{background:#e9d5ff !important}
+.color-chip-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:9px;border:1px solid #cbd5e1;background:#fff;color:#090d16;font-size:14px;font-weight:800;cursor:pointer}
+.color-dot-preview{width:14px;height:14px;border-radius:50%;border:1px solid #090d1633;display:inline-block;flex-shrink:0}
+.color-popover{position:fixed;z-index:10030;background:#fff;border:2px solid #0f172a;border-radius:14px;padding:12px;box-shadow:0 16px 40px #0004;width:min(310px,calc(100vw - 24px))}
+.color-popover-title{font-size:15px;font-weight:800;color:#090d16;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.color-swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.color-swatch{display:flex;align-items:center;gap:7px;padding:9px 8px;border-radius:10px;border:1px solid #cbd5e1;background:#f8fafc;color:#090d16;font-size:14px;font-weight:800;cursor:pointer;text-align:left}
+.color-swatch:hover{border-color:#090d16;filter:brightness(0.97)}
+.color-swatch.active{outline:2px solid #090d16}
+.color-clear-btn{margin-top:8px;width:100%;padding:9px;border-radius:10px;border:1px solid #cbd5e1;background:#f1f5f9;color:#090d16;font-size:14px;font-weight:800;cursor:pointer}
+
+
+.backup-fab{position:fixed;right:14px;bottom:16px;z-index:9998;width:52px;height:52px;border-radius:50%;border:2px solid #10243b;background:#10243b;color:#fff;box-shadow:0 8px 24px #0004;display:inline-flex;align-items:center;justify-content:center;font-size:22px;padding:0;cursor:pointer}
+.backup-fab:hover{background:#1c4265}
+.backup-fab .fab-dot{position:absolute;top:2px;right:2px;width:12px;height:12px;border-radius:50%;background:#22c55e;border:2px solid #fff}
+.backup-fab.syncing .fab-dot{background:#f97316}
+.backup-sheet{position:fixed;right:14px;bottom:76px;z-index:9999;width:min(336px,calc(100vw - 28px));max-height:80vh;overflow:auto;background:#fff;border:2px solid #10243b;border-radius:16px;padding:14px;box-shadow:0 16px 40px #0004;color:#090d16}
+.backup-sheet-head{display:flex;justify-content:space-between;align-items:center;font-size:16px;font-weight:800;color:#10243b;margin-bottom:6px}
+.backup-sheet-meta{font-size:13.5px;color:#1f2937;line-height:1.45;margin-bottom:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:9px}
+.backup-sheet-actions{display:grid;gap:7px}
+.backup-sheet-actions button{width:100%;text-align:left;padding:10px 12px;border-radius:10px;font-size:14px;font-weight:800}
+.backup-drive-box{margin-top:10px;padding-top:10px;border-top:1px solid #e2e8f0;font-size:13px}
+.backup-drive-box input{padding:8px 10px;font-size:13px;margin-top:4px}
+.backup-drive-row{display:flex;align-items:center;gap:6px;margin-top:8px;font-weight:700}
+.backup-drive-row input[type="checkbox"]{width:auto;margin:0}
+
+</style><link rel="manifest" href="./manifest.webmanifest"><meta name="theme-color" content="#10243b"></head><body>
+<header><div class="head"><div><div class="brand">SAHA <span>PULSE</span></div><div class="sub">Saha Pulse · Sürüm 3.3 (Yedek Merkezi)</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><button type="button" id="openSettings" class="settings-trigger" onclick="openSettingsPanel()">⚙ Ayarlar</button><div class="tag">SAHA PULSE · SÜRÜM 3.3</div></div></div></header>
+
+<div class="settings-overlay" id="settingsOverlay" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" onclick="if(event.target===this)closeSettingsPanel()">
+ <div class="settings-dialog">
+  <h2 id="settingsTitle">WorkHub Ayarları</h2>
+  <div class="settings-row"><label for="whLanguage">Dil / Language / Язык</label>
+   <select id="whLanguage"><option value="tr">Türkçe</option><option value="ru">Русский</option><option value="en">English</option></select>
+  </div>
+  <div class="settings-row"><label for="whTheme">Renk teması</label>
+   <select id="whTheme"><option value="default">Lacivert – Mavi</option><option value="forest">Yeşil</option><option value="purple">Mor</option><option value="slate">Gri – Mavi</option></select>
+  </div>
+  <p class="settings-note" id="whSettingsNote">Tercihler bu test sürümünde ayrı saklanır. Dil tercihi kaydedilir; tüm ekranların çevirisi sonraki geliştirme adımında tamamlanacaktır.</p>
+  <div class="settings-actions"><button type="button" onclick="closeSettingsPanel()">Kapat</button><button type="button" class="primary" onclick="saveSahaPulseSettings()">Kaydet</button></div>
+ </div>
+</div>
+<main class="wrap">
+<div class="notice"><b>Deneme prensibi:</b> Durum işaretleri manuel takip içindir; miktarı otomatik değiştirmez. Bu ayrı test kopyası boş başlar. Ana WorkHub verileri ve bulut yedeğiyle karışmaz. Deneme kayıtları yalnızca bu test sürümüne aittir.</div>
+<div id="pwaStatus" class="notice" style="display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:8px"><span><b id="netState">Bağlantı kontrol ediliyor…</b> · Her işlemden (giriş, çıkış, düzeltme) sonra cihazda ve ikinci yerel kasada otomatik yedek alınır; istenirse ayrı Drive dosyasına da yazılır.</span><span id="storageState" class="muted">Otomatik kayıt hazırlanıyor</span><button id="recoverLocalCopyBtn" type="button" style="display:none;padding:7px 10px;border:1px solid #b8c8dc;border-radius:8px;background:#fff;color:#24466c;font-weight:700" onclick="recoverFromSafetyVault()">İkinci kopyadan kurtar</button><b id="saveState" style="color:#0e5e41;font-size:14px">Kayıt bekleniyor</b></div>
+<div class="navtabs"><button id="tabList" class="active" onclick="showPage('list')">Malzeme Listesi</button><button id="tabNew" onclick="showPage('new')">+ Yeni Malzeme Kaydı</button><button id="tabDaily" onclick="showPage('daily')">Günlük Hareketler</button></div>
+<div id="listPage">
+<section class="panel">
+<h3>Malzeme Listesi</h3>
+<div class="filters">
+<button class="active" data-filter="all" onclick="setFilter('all',this)">Tüm Malzemeler (0)</button>
+<button data-filter="electric" onclick="setFilter('electric',this)">Elektrikli</button>
+<button data-filter="repair" onclick="setFilter('repair',this)">Tamirde (0)</button>
+<button data-filter="faulty" onclick="setFilter('faulty',this)">Arızalı (0)</button>
+<button data-filter="out" onclick="setFilter('out',this)">Stokta Olmayanlar (0)</button>
+</div>
+<label for="search">Malzeme / marka / model / seri no / çip no ile ara</label>
+<input id="search" placeholder="Örn. Pompa, 12345, 11879, Hilti..." oninput="render()">
+<div class="viewbar"><div class="muted" id="resultCount" style="margin:8px 0"></div><div class="actions" style="margin:0"><button id="cardViewBtn" onclick="setView('cards')">Kart</button><button id="listViewBtn" class="active" onclick="setView('compact')">☰ Kompakt liste</button><button onclick="openGroupManager()">Cihazları Birleştir / Ayır</button><button onclick="exportFilteredItemsCsv()">Excel'e aktar</button><select id="sortItems" style="width:auto;max-width:155px" onchange="render()"><option value="name">Ada göre sırala</option><option value="qtyDesc">Miktar: çoktan aza</option><option value="qtyAsc">Miktar: azdan çoğa</option></select></div></div>
+<div class="items" id="items"></div>
+</section>
+<section class="panel">
+<div class="actions" style="justify-content:space-between;align-items:center"><div><h3 style="margin:0">Deneme Verisi</h3><div class="muted">Yedek indir veya daha önce alınan JSON yedeğini geri yükle.</div></div><div class="actions"><button onclick="backup()">Yedek indir</button><button onclick="$('restoreFile').click()">Yedekten geri yükle</button><input id="restoreFile" type="file" accept="application/json,.json" class="hidden" onchange="restoreBackup(event)"></div></div>
+</section>
+</div>
+<section class="panel hidden" id="newPage">
+<div class="page-title"><h3>Yeni Malzeme Kaydı</h3><span class="muted">Yeni kayıt formu</span></div>
+<div class="grid">
+<div><label>Malzeme Adı *</label><input id="newName" placeholder="Malzeme adı"></div>
+<div><label>Tür</label><select id="newKind"><option value="general">Genel</option><option value="electric">Elektrikli</option></select></div>
+<div><label>Miktar</label><input id="newQty" type="number" min="0" step="0.01" value="1"></div>
+<div><label>Birim</label><input id="newUnit" value="adet"></div>
+<div><label>Marka</label><input id="newBrand"></div>
+<div><label>Model</label><input id="newModel"></div>
+<div><label>Seri No</label><input id="newSerial"></div>
+<div><label>Çip No</label><input id="newChip"></div>
+<div><label>Stok No</label><input id="newStockNo" placeholder="İsteğe bağlı stok kodu"></div>
+<div><label>Barkod No</label><div class="actions" style="gap:6px"><input id="newBarcode" placeholder="Ürün barkodu" style="flex:1;min-width:0"><button type="button" onclick="startBarcodeScan('newBarcode')">📷 Okut</button></div></div>
+</div>
+<label>Açıklama</label><textarea id="newNote" placeholder="İsteğe bağlı not"></textarea>
+<label>Konum / Kullanım Durumu</label><div class="status-fields"><label><input type="checkbox" id="newSahada"> Sahada</label><label><input type="checkbox" id="newTamirde"> Tamirde</label><label><input type="checkbox" id="newKullanimDisi"> Kullanım Dışı</label><label><input type="checkbox" id="newArizali"> Arızalı</label></div><label>Durum Açıklaması</label><textarea id="newStatusNote" class="status-note" placeholder="İsteğe bağlı açıklama"></textarea>
+<div class="actions"><button class="primary" onclick="addNew()">Malzemeyi kaydet</button></div>
+</section>
+<section class="panel hidden" id="dailyPage">
+ <div class="page-title"><h3>Günlük Hareketler</h3><button onclick="exportDailyCsv()">Filtreleneni Excel'e aktar</button></div>
+ <div class="muted">Seçtiğin tarihte depoya gelen ve depodan çıkan malzemeleri görüntüle. Elektrikli filtresi de uygulanabilir.</div>
+ <div class="daily-grid">
+  <div><label>Tarih Kapsamı</label><select id="dailyDateMode" onchange="toggleDailyDateMode();renderDaily()"><option value="day">Seçili gün</option><option value="all">Tüm tarihler</option></select></div>
+  <div id="dailyDateWrap"><label>Tarih</label><input type="date" id="dailyDate" onchange="renderDaily()"></div>
+  <div><label>İşlem Türü</label><select id="dailyType" onchange="renderDaily()"><option value="all">Tüm hareketler</option><option value="Giriş">Satın almadan depoya gelen</option><option value="Çıkış">Depodan çıkış / günlük dağıtım</option><option value="Tamire gönderildi">Tamire gönderildi</option><option value="Tamirden teslim alındı">Tamirden teslim alındı</option></select></div>
+  <div><label>Malzeme Türü</label><select id="dailyKind" onchange="renderDaily()"><option value="all">Tüm malzemeler</option><option value="electric">Elektrikli</option></select></div>
+  <div><label>Ara</label><input id="dailySearch" placeholder="Malzeme, marka, model, seri/çip no, stok/barkod no, kişi, saha, açıklama..." oninput="renderDaily()"></div>
+ </div>
+ <div class="daily-actions"><button onclick="renderDaily()">Listele</button><button onclick="exportDailyCsv()" class="primary">Excel'e aktar (.csv)</button></div>
+ <div class="muted" id="dailyCount" style="margin:12px 0"></div>
+ <div class="compact-wrap"><table class="compact-table"><thead><tr><th>Tarih</th><th>Saat</th><th>İşlem</th><th>İşlem Nedeni</th><th>Malzeme</th><th>Miktar</th><th>Kime / Tedarikçi</th><th>Nereye / Saha</th><th>Açıklama</th><th>İşlem</th></tr></thead><tbody id="dailyRows"></tbody></table></div>
+ <div class="empty hidden" id="dailyEmpty">Bu tarihte seçilen ölçütlere uygun hareket yok.</div>
+ <details style="margin-top:22px;border:1px solid #f0c9c5;border-radius:12px;padding:12px;background:#fffafa">
+  <summary style="font-weight:800;color:#9f2119;cursor:pointer">⚠️ Tehlikeli işlemler · Hareket kayıtlarını temizleme</summary>
+  <div class="notice" style="background:#fff1ef;border-color:#f3c5bf;color:#8b241d">Bu bölüm özellikle aşağıda ve kapalı tutulur. Tüm hareket kayıtlarını silmek stok miktarlarını değiştirmez; yalnızca hareket geçmişini temizler. İşlemden önce otomatik JSON yedeği indirilir.</div>
+  <button class="danger" onclick="deleteAllMoves()">Tüm hareket kayıtlarını sil</button>
+ </details>
+</section>
+</main>
+<div id="moveModal" class="modal hidden"><div class="modalbox">
+ <div class="page-title"><h3 id="moveTitle">Depo hareketi kaydet</h3><button type="button" onclick="closeMove()">Kapat</button></div>
+ <div class="notice" style="margin:8px 0"><b id="moveItemName">Malzeme</b> · Mevcut stok: <b id="moveCurrentQty">0</b><div class="muted" id="moveDeviceIdentity" style="margin-top:5px"></div></div>
+ <input id="moveItemId" type="hidden">
+ <div class="grid">
+  <div><label>İşlem Türü</label><select id="moveType" onchange="updateMoveLabels()"><option value="Çıkış">Çıkış</option><option value="Giriş">Giriş</option></select></div>
+  <div><label>İşlem Nedeni *</label><select id="moveReason"></select></div>
+  <div><label>Miktar *</label><input id="moveQty" type="number" min="0.01" step="0.01" value="1"></div>
+  <div><label>Tarih *</label><input id="moveDate" type="date"></div>
+  <div><label id="movePersonLabel">Kime teslim edildi?</label><input id="movePerson" placeholder="Ad soyad / tedarikçi"></div>
+  <div style="grid-column:1/-1"><label id="moveLocationLabel">Nereye verildi? (Saha / bölüm)</label><input id="moveLocation" placeholder="Saha / bölüm / depo"></div>
+ </div>
+ <label>Açıklama</label><textarea id="moveNote" placeholder="İsteğe bağlı açıklama"></textarea>
+ <div class="actions" style="justify-content:flex-end"><button type="button" onclick="closeMove()">İptal</button><button type="button" class="primary" onclick="saveMove()">Hareketi kaydet</button></div>
+ <div class="muted">Son kullanılan kişi ve saha bilgileri sonraki çıkışta hatırlanır; tarih bugüne otomatik gelir.</div>
+</div></div>
+<div id="editModal" class="modal hidden"><div class="modalbox">
+ <div class="page-title"><h3>Malzeme kartını düzelt</h3><button type="button" onclick="window.closeEdit()">Kapat</button></div>
+ <input id="editId" type="hidden"><label>Malzeme Adı *</label><input id="editName">
+ <div class="grid">
+  <div><label>Miktar</label><input id="editQty" type="number" min="0" step="0.01"></div>
+  <div><label>Tür</label><select id="editKind"><option value="general">Genel</option><option value="electric">Elektrikli</option></select></div>
+  <div><label>Birim</label><input id="editUnit"></div><div><label>Marka</label><input id="editBrand"></div><div><label>Model</label><input id="editModel"></div>
+  <div><label>Seri No</label><input id="editSerial"></div><div><label>Çip No</label><input id="editChip"></div>
+  <div><label>Stok No</label><input id="editStockNo" placeholder="İsteğe bağlı stok kodu"></div><div><label>Barkod No</label><div class="actions" style="gap:6px"><input id="editBarcode" placeholder="Ürün barkodu" style="flex:1;min-width:0"><button type="button" onclick="startBarcodeScan('editBarcode')">📷 Okut</button></div></div>
+ </div><label>Açıklama</label><textarea id="editNote"></textarea>
+ <label>Konum / Kullanım Durumu</label><div class="status-fields"><label><input type="checkbox" id="editSahada"> Sahada</label><label><input type="checkbox" id="editTamirde"> Tamirde</label><label><input type="checkbox" id="editKullanimDisi"> Kullanım Dışı</label><label><input type="checkbox" id="editArizali"> Arızalı</label></div><label>Durum Açıklaması</label><textarea id="editStatusNote" class="status-note" placeholder="İsteğe bağlı açıklama"></textarea>
+ <div class="actions"><button type="button" class="primary" onclick="window.saveEdit()">Değişiklikleri kaydet</button></div>
+</div></div>
+<div id="barcodeModal" class="modal hidden"><div class="modalbox" style="max-width:520px"><div class="page-title"><h3>Barkod okut</h3><button type="button" onclick="stopBarcodeScan()">Kapat</button></div><div class="muted" id="barcodeStatus">Kameraya erişim bekleniyor…</div><video id="barcodeVideo" autoplay muted playsinline style="width:100%;max-height:55vh;background:#111;border-radius:12px;object-fit:cover;margin-top:10px"></video><div class="actions"><button type="button" onclick="stopBarcodeScan()">İptal</button></div><div class="muted">Barkodu kameranın görüntüsünde çerçeve içine al. Okunan numara Barkod No alanına yazılır.</div></div></div>
+<div class="modal hidden" id="groupModal"><div class="modalbox"><div class="page-title"><h3>Cihazları Birleştir / Ayır</h3><button onclick="closeGroupManager()">Kapat</button></div><div class="notice">Yalnızca elektrikli cihazlar seçilebilir. Birleştirme kayıtları silmez; her cihazın kartı, kimliği ve hareket geçmişi ayrı kalır.</div><label>Grup başlığı</label><input id="groupTitle" placeholder="Örn. Dalgıç Pompa / Projektör"><label>Birleştirilecek cihazları seç</label><div id="groupChoices" style="max-height:45vh;overflow:auto"></div><div class="actions"><button class="primary" onclick="applyDeviceGroup()">Seçilenleri Birleştir</button><button onclick="ungroupSelectedDevices()">Seçilenleri Ayır</button></div><div class="muted" style="margin-top:8px">Not: Birleştirmek için en az iki cihaz seçin. Ayırma, seçili cihazları gruptan çıkarır.</div></div></div>
+<div id="moveEditModal" class="modal hidden"><div class="modalbox">
+ <div class="page-title"><h3>Hareket kaydını düzelt</h3><button type="button" onclick="closeMoveEdit()">Kapat</button></div>
+ <input id="moveEditId" type="hidden">
+ <div class="notice">Bu düzenleme hareketin stok etkisini de yeniden hesaplar. Eski kayıt bilgileri korunarak güncelleme yapılır.</div>
+ <div class="grid">
+  <div><label>İşlem Türü</label><select id="moveEditType" onchange="updateMoveEditReasons()"><option value="Giriş">Giriş</option><option value="Çıkış">Çıkış</option></select></div>
+  <div><label>İşlem Nedeni</label><select id="moveEditReason"></select></div>
+  <div><label>Miktar</label><input id="moveEditQty" type="number" min="0.01" step="0.01"></div>
+  <div><label>Tarih</label><input id="moveEditDate" type="date"></div>
+  <div><label>Kime / Kimden</label><input id="moveEditPerson"></div>
+  <div><label>Nereye / Nereden</label><input id="moveEditLocation"></div>
+ </div>
+ <label>Açıklama</label><textarea id="moveEditNote"></textarea>
+ <div class="actions"><button onclick="closeMoveEdit()">Vazgeç</button><button class="primary" onclick="saveMoveEdit()">Düzeltmeyi kaydet</button></div>
+</div></div>
+<script>
+const STORE='saha_pulse_test_25_v1';
+const INITIAL_DB={"items": [{"id": "excel-001", "name": "Ara Kablo 3 lü", "model": "(3'lü, Gri,Görkem İnş);(3'lü,Siyah,Arızalı,Astra İnş.);(Kırmızı 2 adet,arızalı)", "qty": 4, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 5 · Sayfa 1", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-002", "name": "Ara Kablo Makaralı", "model": "4'lü - makara Arızalı", "qty": 2, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 11 · Sayfa 1", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-005", "name": "Balyoz", "model": "", "qty": 1, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 114 · Sayfa 5 ", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-007", "name": "Bez (temizlik için)", "model": "50 kg- 10 çuval- 500 kg", "qty": 420, "unit": "kilo", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 142 · adet olarak da isteniyor", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-009", "name": "Boya Rulosu Başlığı / Yedeği 10 cm", "model": "10 cm", "qty": 5, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 82 · Sayfa 4", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-010", "name": "Branda Naylon", "model": "Naylon Branda", "qty": 0, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 32 · Sayfa 2", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-011", "name": "Branda Tente", "model": "3 Farklı, Detaylandır", "qty": 3, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 117 · Sayfa 6 ", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-012", "name": "Cat5e internet kablosu", "model": "", "qty": 1, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 29 · Sayfa 2", "logs": [{"type": "Malzeme kartı düzeltildi", "qty": 0, "delta": 0, "date": "12.11.2026 23:00:21", "person": "Ambar sorumlusu", "note": "Kart bilgileri güncellendi", "undone": false}], "groupId": "", "statusKullanimDisi": true, "statusDepoda": false, "stockNo": "", "barcode": "", "statusSahada": false, "statusArizali": false, "statusTamirde": false, "statusNote": ""}, {"id": "excel-013", "name": "Cırt Kelepçe / Plastik Kelepçe/ Kablo Bağı", "model": "", "qty": 0, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 90 · Sayfa 4", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-014", "name": "Cif Yüzey Temizleyici", "model": "500 ml", "qty": 9, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 126", "logs": [{"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 1, "delta": -1, "date": "2026-11-17", "createdAt": "17.11.2026 08:20:27", "person": "Maksat", "location": "Soner", "note": "", "undone": false, "movementId": "mv1794892827676qqy", "deviceId": "excel-014", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 1, "delta": -1, "date": "2026-11-13", "createdAt": "13.11.2026 14:03:55", "person": "A.dundar", "location": "Mehmet Demir", "note": "", "undone": false, "movementId": "mv1794567835636ccj", "deviceId": "excel-014", "serial": "", "chip": ""}], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false, "statusSahada": true, "statusTamirde": false}, {"id": "excel-015", "name": "Çekiç", "model": "", "qty": 1, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 109 · Sayfa 5 ", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-016", "name": "Çekpas Sapsız 37+55 cm", "model": "çekpas 37 cm sapsız plastik uç+55 cm", "qty": 34, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "", "logs": [{"type": "Malzeme kartı düzeltildi", "qty": 0, "delta": 0, "date": "19.11.2026 09:42:11", "person": "Ambar sorumlusu", "note": "Kart bilgileri güncellendi", "undone": false}, {"type": "Malzeme kartı düzeltildi", "qty": 0, "delta": 0, "date": "19.11.2026 09:37:33", "person": "Ambar sorumlusu", "note": "Kart bilgileri güncellendi", "undone": false}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 3, "delta": -3, "date": "2026-11-19", "createdAt": "19.11.2026 09:36:54", "person": "Aydın dundar", "location": ".", "note": "", "undone": false, "movementId": "mv1795070214866dar", "deviceId": "excel-016", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 3, "delta": -3, "date": "2026-11-19", "createdAt": "19.11.2026 09:36:37", "person": "Rustam", "location": ".", "note": "", "undone": false, "movementId": "mv1795070197895kmp", "deviceId": "excel-016", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 6, "delta": -6, "date": "2026-11-19", "createdAt": "19.11.2026 09:36:22", "person": "Aleksandr", "location": ".", "note": "", "undone": false, "movementId": "mv17950701827900t9", "deviceId": "excel-016", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 4, "delta": -4, "date": "2026-11-19", "createdAt": "19.11.2026 09:36:04", "person": "Maksat", "location": ".", "note": "", "undone": false, "movementId": "mv1795070164210kqs", "deviceId": "excel-016", "serial": "", "chip": ""}, {"type": "Giriş", "reason": "Satın alma / yeni malzeme", "qty": 50, "delta": 50, "date": "2026-11-19", "createdAt": "19.11.2026 09:35:39", "person": "Maksat/ Hamza", "location": ".", "note": "", "undone": false, "movementId": "mv179507013990862q", "deviceId": "excel-016", "serial": "", "chip": ""}, {"type": "Hareket geri alma", "qty": 50, "delta": 0, "date": "2026-11-19", "person": "Ambar sorumlusu", "note": "Geri alınan işlem: Giriş · Sahadan iade alındı", "undone": true}, {"type": "Giriş", "reason": "Sahadan iade alındı", "qty": 50, "delta": 50, "date": "2026-11-19", "createdAt": "19.11.2026 09:34:31", "person": "Maksat/ Hamza", "location": ".", "note": "", "undone": true, "movementId": "mv1795070071073wf4", "deviceId": "excel-016", "serial": "", "chip": ""}], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false, "statusSahada": true, "statusTamirde": false, "stockNo": "", "barcode": "", "statusArizali": false, "statusNote": ""}, {"id": "excel-017", "name": "Çivi 10 luk", "model": "10 luk paslı eski", "qty": 2, "unit": "kilo", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 68", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-018", "name": "Çivi 12 lik", "model": "12 lik eski", "qty": 2, "unit": "kilo", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 69", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-019", "name": "Çizme", "model": "39–40 numara", "qty": 3, "unit": "çift", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 23 · 39-40", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-020", "name": "Çizme", "model": "42 numara", "qty": 2, "unit": "çift", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 60 · 42-42-42-42-42-42-42-42-42", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-021", "name": "Çizme", "model": "43 numara", "qty": 1, "unit": "çift", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 61 · 43-43-43-43-43-43-43-43-43-", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-024", "name": "Çöp Kovası", "model": "\"Herkül\" 70 L", "qty": 8, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 3 · Sayfa 1", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-025", "name": "Çöp Kovası Kapağı", "model": "70 litre Kova Kapağı", "qty": 16, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 4 · Sayfa 1", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-026", "name": "Çöp Torbası jumbo", "model": "80 × 110", "qty": 0, "unit": "Rulo", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 36 · Sayfa 2", "logs": [{"type": "Malzeme kartı düzeltildi", "qty": 0, "delta": 0, "date": "19.11.2026 10:11:33", "person": "Ambar sorumlusu", "note": "Kart bilgileri güncellendi", "undone": false}], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false, "stockNo": "", "barcode": "", "statusSahada": false, "statusArizali": false, "statusTamirde": false, "statusNote": ""}, {"id": "excel-027", "name": "Çuval Büyük Boy Big Bag", "model": "büyük çuval 90*90*140", "qty": 185, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Yanlış excelden aktarilmis", "logs": [{"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 10, "delta": -10, "date": "2026-11-19", "createdAt": "19.11.2026 09:40:16", "person": "Hasan Basri", "location": ".", "note": "", "undone": false, "movementId": "mv1795070416486ox4", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 6, "delta": -6, "date": "2026-11-19", "createdAt": "19.11.2026 09:27:51", "person": "Alihan Seyduv idari işler", "location": ".", "note": "", "undone": false, "movementId": "mv1795069671535cf4", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 30, "delta": -30, "date": "2026-11-18", "createdAt": "18.11.2026 15:20:02", "person": "Uba10/ Dymr-2", "location": ".", "note": "", "undone": false, "movementId": "mv1795004402412upw", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "delta": -20, "date": "2026-11-18", "createdAt": "18.11.2026 14:43:35", "person": "UOR 2/1", "location": ".", "note": "", "undone": false, "movementId": "mv1795002215844itf", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 6, "delta": -6, "date": "2026-11-18", "createdAt": "18.11.2026 14:43:11", "person": "Beslan", "location": ".", "note": "", "undone": false, "movementId": "mv1795002191490j3t", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 2, "delta": -2, "date": "2026-11-18", "createdAt": "18.11.2026 14:42:51", "person": "Hasan basri", "location": ".", "note": "", "undone": false, "movementId": "mv1795002171224jco", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 15, "delta": -15, "date": "2026-11-18", "createdAt": "18.11.2026 10:27:57", "person": "İlhan Yalçın", "location": ".", "note": "", "undone": false, "movementId": "mv1794986877628zf0", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 25, "delta": -25, "date": "2026-11-18", "createdAt": "18.11.2026 10:27:38", "person": "SMU15", "location": ".", "note": "", "undone": false, "movementId": "mv1794986858826drx", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 10, "delta": -10, "date": "2026-11-18", "createdAt": "18.11.2026 10:27:16", "person": "Dmitri", "location": ".", "note": "", "undone": false, "movementId": "mv1794986836751pv3", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "delta": -20, "date": "2026-11-18", "createdAt": "18.11.2026 10:27:03", "person": "Beslan", "location": ".", "note": "", "undone": false, "movementId": "mv1794986823684dxl", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "delta": -20, "date": "2026-11-18", "createdAt": "18.11.2026 10:26:39", "person": "A.Dundar", "location": "Soner", "note": "", "undone": false, "movementId": "mv1794986799519d2w", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 30, "delta": -30, "date": "2026-11-18", "createdAt": "18.11.2026 10:26:23", "person": "A.Dundar", "location": "Berkan", "note": "", "undone": false, "movementId": "mv1794986783317dqj", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 2, "delta": -2, "date": "2026-11-17", "createdAt": "17.11.2026 15:58:36", "person": "Beslan", "location": ".", "note": "", "undone": false, "movementId": "mv1794920316974xke", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 50, "delta": -50, "date": "2026-11-17", "createdAt": "17.11.2026 10:18:49", "person": "SMU13", "location": ".", "note": "", "undone": false, "movementId": "mv17948999294630u4", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 2, "delta": -2, "date": "2026-11-17", "createdAt": "17.11.2026 09:48:04", "person": "Çöp Konteynırı İçin", "location": ".", "note": "", "undone": false, "movementId": "mv1794898084057k7p", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "delta": -20, "date": "2026-11-17", "createdAt": "17.11.2026 08:37:06", "person": "İlhan yalcin", "location": ".", "note": "", "undone": false, "movementId": "mv1794893826996nzk", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 2, "delta": -2, "date": "2026-11-17", "createdAt": "17.11.2026 08:22:34", "person": "Hasan Basri", "location": ".", "note": "", "undone": false, "movementId": "mv179489295467346e", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 10, "delta": -10, "date": "2026-11-17", "createdAt": "17.11.2026 08:14:37", "person": "Mekan sef", "location": ".", "note": "", "undone": false, "movementId": "mv1794892477637akj", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 50, "delta": -50, "date": "2026-11-16", "createdAt": "16.11.2026 16:05:06", "person": "Smu11-2", "location": "Dmitri severin", "note": "", "undone": false, "movementId": "mv1794834306096824", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 30, "delta": -30, "date": "2026-11-16", "createdAt": "16.11.2026 16:04:41", "person": "Smu11-1", "location": "Dmitri severin", "note": "", "undone": false, "movementId": "mv179483428114053c", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "delta": -20, "date": "2026-11-16", "createdAt": "16.11.2026 15:38:25", "person": "Mehmet Ateş", "location": ".", "note": "", "undone": false, "movementId": "mv1794832705503q5b", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "delta": -20, "date": "2026-11-16", "createdAt": "16.11.2026 14:53:29", "person": "SMU14", "location": ".", "note": "", "undone": false, "movementId": "mv1794830009490vwz", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 15, "delta": -15, "date": "2026-11-16", "createdAt": "16.11.2026 14:25:49", "person": "Beslan", "location": ".", "note": "", "undone": false, "movementId": "mv1794828349177ny9", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Giriş", "reason": "Satın alma / yeni malzeme", "qty": 600, "delta": 600, "date": "2026-11-16", "createdAt": "16.11.2026 14:25:32", "person": "Beslan", "location": "Depo", "note": "", "undone": false, "movementId": "mv1794828333017h2m", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Malzeme kartı düzeltildi", "qty": 0, "delta": 0, "date": "16.11.2026 10:39:19", "person": "Ambar sorumlusu", "note": "Kart bilgileri güncellendi", "undone": false}, {"type": "Malzeme kartı / miktar düzeltildi", "qty": 51, "delta": -51, "date": "16.11.2026 10:30:57", "person": "Ambar sorumlusu", "note": "Miktar 51 → 0; kart bilgileri güncellendi", "undone": false}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 10, "delta": -10, "date": "2026-11-16", "createdAt": "16.11.2026 09:39:50", "person": "A.dundar", "location": "Salih", "note": "", "undone": false, "movementId": "mv1794811190106zjv", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "delta": -20, "date": "2026-11-16", "createdAt": "16.11.2026 09:39:36", "person": "A.dundar", "location": "Hasan Basri", "note": "", "undone": false, "movementId": "mv1794811176872s8o", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 15, "delta": -15, "date": "2026-11-16", "createdAt": "16.11.2026 09:39:17", "person": "A.dundar", "location": "Suphi", "note": "", "undone": false, "movementId": "mv1794811157760pfl", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "delta": -20, "date": "2026-11-16", "createdAt": "16.11.2026 09:39:00", "person": "A.dundar", "location": "Berkan", "note": "", "undone": false, "movementId": "mv1794811140155sk8", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 30, "delta": -30, "date": "2026-11-16", "createdAt": "16.11.2026 09:38:45", "person": "A.dundar", "location": "Soner", "note": "", "undone": false, "movementId": "mv1794811125347m24", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 15, "delta": -15, "date": "2026-11-16", "createdAt": "16.11.2026 09:38:25", "person": "A.dundar", "location": "Sevgi", "note": "", "undone": false, "movementId": "mv17948111057249a0", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 3, "delta": -3, "date": "2026-11-14", "createdAt": "14.11.2026 10:33:39", "person": "Hasan Basri", "location": ".", "note": "", "undone": false, "movementId": "mv1794641619287eov", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 5, "delta": -5, "date": "2026-11-14", "createdAt": "14.11.2026 10:33:20", "person": "Dmitri", "location": ".", "note": "", "undone": false, "movementId": "mv1794641600234mi1", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "delta": -20, "date": "2026-11-14", "createdAt": "14.11.2026 10:32:26", "person": "İlhan Şahin", "location": "Ilhan", "note": "", "undone": false, "movementId": "mv17946415468816j4", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "delta": -20, "date": "2026-11-14", "createdAt": "14.11.2026 10:31:57", "person": "Beslan", "location": "Beslan", "note": "", "undone": false, "movementId": "mv17946415179282sn", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 1, "delta": -1, "date": "2026-11-13", "createdAt": "13.11.2026 13:03:24", "person": "Artem abashev", "location": "?", "note": "", "undone": false, "movementId": "mv1794564204506yxr", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Malzeme kartı / miktar düzeltildi", "qty": 11, "delta": -11, "date": "13.11.2026 10:26:30", "person": "Ambar sorumlusu", "note": "Miktar 221 → 210; kart bilgileri güncellendi", "undone": false}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 5, "delta": -5, "date": "2026-11-13", "createdAt": "13.11.2026 10:17:31", "person": "Beslan", "location": "?", "note": "", "undone": false, "movementId": "mv1794554251755q3x", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "delta": -20, "date": "2026-11-13", "createdAt": "13.11.2026 10:16:40", "person": "Mekan Sef", "location": "?", "note": "", "undone": false, "movementId": "mv1794554200498qw0", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "delta": -20, "date": "2026-11-13", "createdAt": "13.11.2026 08:47:02", "person": "?", "location": "İlhan yalçın", "note": "", "undone": false, "movementId": "mv17945488226449uy", "deviceId": "excel-027", "serial": "", "chip": "", "editedAt": "13.11.2026 08:47:35"}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "delta": -20, "date": "2026-11-13", "createdAt": "13.11.2026 08:46:26", "person": "?", "location": "Mehmet A.ates", "note": "", "undone": false, "movementId": "mv17945487864336ny", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Malzeme kartı düzeltildi", "qty": 0, "delta": 0, "date": "13.11.2026 08:26:04", "person": "Ambar sorumlusu", "note": "Kart bilgileri güncellendi", "undone": false}, {"type": "Malzeme kartı düzeltildi", "qty": 0, "delta": 0, "date": "13.11.2026 08:10:17", "person": "Ambar sorumlusu", "note": "Kart bilgileri güncellendi", "undone": false}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 30, "delta": -30, "date": "2026-11-13", "createdAt": "13.11.2026 08:09:51", "person": "?", "location": "Soner", "note": "", "undone": false, "movementId": "mv1794546591730ttx", "deviceId": "excel-027", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 10, "delta": -10, "date": "2026-11-13", "createdAt": "13.11.2026 08:09:15", "person": "?", "location": "Sevgiye", "note": "", "undone": false, "movementId": "mv17945465558942aa", "deviceId": "excel-027", "serial": "", "chip": ""}], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false, "statusSahada": true, "statusTamirde": false, "stockNo": "", "barcode": "", "statusArizali": false, "statusNote": ""}, {"id": "excel-028", "name": "Çuval Küçük Boy", "model": "küçük çuval", "qty": 0, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 34 · Sayfa 2", "logs": [{"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 1, "delta": -1, "date": "2026-11-17", "createdAt": "17.11.2026 09:47:34", "person": "Rustam", "location": ".", "note": "", "undone": false, "movementId": "mv1794898054028qjt", "deviceId": "excel-028", "serial": "", "chip": ""}, {"type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 4, "delta": -4, "date": "2026-11-16", "createdAt": "16.11.2026 09:37:52", "person": "A.dundar", "location": "Tamer", "note": "", "undone": false, "movementId": "mv1794811072153as5", "deviceId": "excel-028", "serial": "", "chip": ""}], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false, "statusSahada": true, "statusTamirde": false}, {"id": "excel-029", "name": "Dalgıç pompa süzgeç standı / pompa alt tabanı", "model": "", "qty": 4, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 42 · Sayfa 2", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}, {"id": "excel-030", "name": "Dalgıç Pompası Arızalılar", "model": "15279-06223-14972-11879-15296-06246-Rain Pump( etiket yok);29934; 1100064", "qty": 3, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 12 · 12 adet arızalıydı; 5 adet tamire gönderildi ve geri bekleniyor. Depoda kalan: 7 adet.,3 ü geldi\n1 tane daha arizali 1100064 geldi( suphiden)", "logs": [{"type": "Malzeme kartı düzeltildi", "qty": 0, "delta": 0, "date": "16.11.2026 16:46:58", "person": "Ambar sorumlusu", "note": "Kart bilgileri güncellendi", "undone": false}, {"type": "Giriş", "reason": "Sahadan iade alındı", "qty": 1, "delta": 1, "date": "2026-11-16", "createdAt": "16.11.2026 16:45:29", "person": "Suphi", "location": "Aleksandr", "note": "W.neuson pst2-400.  1100064", "undone": false, "movementId": "mv1794836729202gu6", "deviceId": "excel-030", "serial": "", "chip": ""}, {"type": "Malzeme kartı düzeltildi", "qty": 0, "delta": 0, "date": "14.11.2026 16:39:28", "person": "Ambar sorumlusu", "note": "Kart bilgileri güncellendi", "undone": false}, {"type": "Malzeme kartı düzeltildi", "qty": 0, "delta": 0, "date": "12.11.2026 22:56:30", "person": "Ambar sorumlusu", "note": "Kart bilgileri güncellendi", "undone": false}], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false, "stockNo": "", "barcode": "", "statusSahada": false, "statusArizali": true, "statusTamirde": true, "statusNote": ""}, {"id": "excel-031", "name": "Dalgıç Pompası FSM 2.4 Water Sound", "model": "FSM 2.4 Water Sound seri ?? çip ?---23040219---", "qty": 0, "unit": "adet", "kind": "general", "condition": "Çalışıyor", "fault": "", "serial": "", "chip": "", "brand": "", "note": "Excel Stok Listesi · No 64 · Sayfa 3", "logs": [], "groupId": "", "statusKullanimDisi": false, "statusDepoda": false}], "moves": [{"id": "mv17945465558942aa", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 10, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-13", "createdAt": "13.11.2026 08:09:15", "person": "?", "location": "Sevgiye", "note": "", "undone": false, "stockEffect": -10}, {"id": "mv1794546591730ttx", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 30, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-13", "createdAt": "13.11.2026 08:09:51", "person": "?", "location": "Soner", "note": "", "undone": false, "stockEffect": -30}, {"id": "mv17945487864336ny", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-13", "createdAt": "13.11.2026 08:46:26", "person": "?", "location": "Mehmet A.ates", "note": "", "undone": false, "stockEffect": -20}, {"id": "mv17945488226449uy", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-13", "createdAt": "13.11.2026 08:47:02", "person": "?", "location": "İlhan yalçın", "note": "", "undone": false, "stockEffect": -20, "editedAt": "13.11.2026 08:47:35"}, {"id": "mv1794554200498qw0", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-13", "createdAt": "13.11.2026 10:16:40", "person": "Mekan Sef", "location": "?", "note": "", "undone": false, "stockEffect": -20}, {"id": "mv1794554251755q3x", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 5, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-13", "createdAt": "13.11.2026 10:17:31", "person": "Beslan", "location": "?", "note": "", "undone": false, "stockEffect": -5}, {"id": "mv1794564204506yxr", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 1, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-13", "createdAt": "13.11.2026 13:03:24", "person": "Artem abashev", "location": "?", "note": "", "undone": false, "stockEffect": -1}, {"id": "mv1794567835636ccj", "itemId": "excel-014", "deviceId": "excel-014", "groupId": "", "itemName": "Cif Yüzey Temizleyici", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 1, "unit": "adet", "brand": "", "model": "500 ml", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-13", "createdAt": "13.11.2026 14:03:55", "person": "A.dundar", "location": "Mehmet Demir", "note": "", "undone": false, "stockEffect": -1}, {"id": "mv17946415179282sn", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-14", "createdAt": "14.11.2026 10:31:57", "person": "Beslan", "location": "Beslan", "note": "", "undone": false, "stockEffect": -20}, {"id": "mv17946415468816j4", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-14", "createdAt": "14.11.2026 10:32:26", "person": "İlhan Şahin", "location": "Ilhan", "note": "", "undone": false, "stockEffect": -20}, {"id": "mv1794641600234mi1", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 5, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-14", "createdAt": "14.11.2026 10:33:20", "person": "Dmitri", "location": ".", "note": "", "undone": false, "stockEffect": -5}, {"id": "mv1794641619287eov", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 3, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-14", "createdAt": "14.11.2026 10:33:39", "person": "Hasan Basri", "location": ".", "note": "", "undone": false, "stockEffect": -3}, {"id": "mv1794811072153as5", "itemId": "excel-028", "deviceId": "excel-028", "groupId": "", "itemName": "Çuval Küçük Boy", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 4, "unit": "adet", "brand": "", "model": "küçük çuval", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-16", "createdAt": "16.11.2026 09:37:52", "person": "A.dundar", "location": "Tamer", "note": "", "undone": false, "stockEffect": -4}, {"id": "mv17948111057249a0", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 15, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-16", "createdAt": "16.11.2026 09:38:25", "person": "A.dundar", "location": "Sevgi", "note": "", "undone": false, "stockEffect": -15}, {"id": "mv1794811125347m24", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 30, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-16", "createdAt": "16.11.2026 09:38:45", "person": "A.dundar", "location": "Soner", "note": "", "undone": false, "stockEffect": -30}, {"id": "mv1794811140155sk8", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-16", "createdAt": "16.11.2026 09:39:00", "person": "A.dundar", "location": "Berkan", "note": "", "undone": false, "stockEffect": -20}, {"id": "mv1794811157760pfl", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 15, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-16", "createdAt": "16.11.2026 09:39:17", "person": "A.dundar", "location": "Suphi", "note": "", "undone": false, "stockEffect": -15}, {"id": "mv1794811176872s8o", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-16", "createdAt": "16.11.2026 09:39:36", "person": "A.dundar", "location": "Hasan Basri", "note": "", "undone": false, "stockEffect": -20}, {"id": "mv1794811190106zjv", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 10, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-16", "createdAt": "16.11.2026 09:39:50", "person": "A.dundar", "location": "Salih", "note": "", "undone": false, "stockEffect": -10}, {"id": "mv1794828333017h2m", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Giriş", "reason": "Satın alma / yeni malzeme", "qty": 600, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-16", "createdAt": "16.11.2026 14:25:32", "person": "Beslan", "location": "Depo", "note": "", "undone": false, "stockEffect": 600}, {"id": "mv1794828349177ny9", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 15, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-16", "createdAt": "16.11.2026 14:25:49", "person": "Beslan", "location": ".", "note": "", "undone": false, "stockEffect": -15}, {"id": "mv1794830009490vwz", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-16", "createdAt": "16.11.2026 14:53:29", "person": "SMU14", "location": ".", "note": "", "undone": false, "stockEffect": -20}, {"id": "mv1794832705503q5b", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-16", "createdAt": "16.11.2026 15:38:25", "person": "Mehmet Ateş", "location": ".", "note": "", "undone": false, "stockEffect": -20}, {"id": "mv179483428114053c", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 30, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-16", "createdAt": "16.11.2026 16:04:41", "person": "Smu11-1", "location": "Dmitri severin", "note": "", "undone": false, "stockEffect": -30}, {"id": "mv1794834306096824", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 50, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-16", "createdAt": "16.11.2026 16:05:06", "person": "Smu11-2", "location": "Dmitri severin", "note": "", "undone": false, "stockEffect": -50}, {"id": "mv1794836729202gu6", "itemId": "excel-030", "deviceId": "excel-030", "groupId": "", "itemName": "Dalgıç Pompası Arızalılar", "kind": "general", "type": "Giriş", "reason": "Sahadan iade alındı", "qty": 1, "unit": "adet", "brand": "", "model": "15279-06223-14972-11879-15296-06246-Rain Pump( etiket yok);29934", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-16", "createdAt": "16.11.2026 16:45:29", "person": "Suphi", "location": "Aleksandr", "note": "W.neuson pst2-400.  1100064", "undone": false, "stockEffect": 1}, {"id": "mv1794892477637akj", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 10, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-17", "createdAt": "17.11.2026 08:14:37", "person": "Mekan sef", "location": ".", "note": "", "undone": false, "stockEffect": -10}, {"id": "mv1794892827676qqy", "itemId": "excel-014", "deviceId": "excel-014", "groupId": "", "itemName": "Cif Yüzey Temizleyici", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 1, "unit": "adet", "brand": "", "model": "500 ml", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-17", "createdAt": "17.11.2026 08:20:27", "person": "Maksat", "location": "Soner", "note": "", "undone": false, "stockEffect": -1}, {"id": "mv179489295467346e", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 2, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-17", "createdAt": "17.11.2026 08:22:34", "person": "Hasan Basri", "location": ".", "note": "", "undone": false, "stockEffect": -2}, {"id": "mv1794893826996nzk", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-17", "createdAt": "17.11.2026 08:37:06", "person": "İlhan yalcin", "location": ".", "note": "", "undone": false, "stockEffect": -20}, {"id": "mv1794898054028qjt", "itemId": "excel-028", "deviceId": "excel-028", "groupId": "", "itemName": "Çuval Küçük Boy", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 1, "unit": "adet", "brand": "", "model": "küçük çuval", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-17", "createdAt": "17.11.2026 09:47:34", "person": "Rustam", "location": ".", "note": "", "undone": false, "stockEffect": -1}, {"id": "mv1794898084057k7p", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 2, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-17", "createdAt": "17.11.2026 09:48:04", "person": "Çöp Konteynırı İçin", "location": ".", "note": "", "undone": false, "stockEffect": -2}, {"id": "mv17948999294630u4", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 50, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-17", "createdAt": "17.11.2026 10:18:49", "person": "SMU13", "location": ".", "note": "", "undone": false, "stockEffect": -50}, {"id": "mv1794920316974xke", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 2, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-17", "createdAt": "17.11.2026 15:58:36", "person": "Beslan", "location": ".", "note": "", "undone": false, "stockEffect": -2}, {"id": "mv1794986783317dqj", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 30, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-18", "createdAt": "18.11.2026 10:26:23", "person": "A.Dundar", "location": "Berkan", "note": "", "undone": false, "stockEffect": -30}, {"id": "mv1794986799519d2w", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-18", "createdAt": "18.11.2026 10:26:39", "person": "A.Dundar", "location": "Soner", "note": "", "undone": false, "stockEffect": -20}, {"id": "mv1794986823684dxl", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-18", "createdAt": "18.11.2026 10:27:03", "person": "Beslan", "location": ".", "note": "", "undone": false, "stockEffect": -20}, {"id": "mv1794986836751pv3", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 10, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-18", "createdAt": "18.11.2026 10:27:16", "person": "Dmitri", "location": ".", "note": "", "undone": false, "stockEffect": -10}, {"id": "mv1794986858826drx", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 25, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-18", "createdAt": "18.11.2026 10:27:38", "person": "SMU15", "location": ".", "note": "", "undone": false, "stockEffect": -25}, {"id": "mv1794986877628zf0", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 15, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-18", "createdAt": "18.11.2026 10:27:57", "person": "İlhan Yalçın", "location": ".", "note": "", "undone": false, "stockEffect": -15}, {"id": "mv1795002171224jco", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 2, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-18", "createdAt": "18.11.2026 14:42:51", "person": "Hasan basri", "location": ".", "note": "", "undone": false, "stockEffect": -2}, {"id": "mv1795002191490j3t", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 6, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-18", "createdAt": "18.11.2026 14:43:11", "person": "Beslan", "location": ".", "note": "", "undone": false, "stockEffect": -6}, {"id": "mv1795002215844itf", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 20, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-18", "createdAt": "18.11.2026 14:43:35", "person": "UOR 2/1", "location": ".", "note": "", "undone": false, "stockEffect": -20}, {"id": "mv1795004402412upw", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 30, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-18", "createdAt": "18.11.2026 15:20:02", "person": "Uba10/ Dymr-2", "location": ".", "note": "", "undone": false, "stockEffect": -30}, {"id": "mv1795069671535cf4", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 6, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-19", "createdAt": "19.11.2026 09:27:51", "person": "Alihan Seyduv idari işler", "location": ".", "note": "", "undone": false, "stockEffect": -6}, {"id": "mv1795070071073wf4", "itemId": "excel-016", "deviceId": "excel-016", "groupId": "", "itemName": "Çekpas Sapsız 37 cm", "kind": "general", "type": "Giriş", "reason": "Sahadan iade alındı", "qty": 50, "unit": "adet", "brand": "", "model": "çekpas 37 cm sapsız plastik uç", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-19", "createdAt": "19.11.2026 09:34:31", "person": "Maksat/ Hamza", "location": ".", "note": "", "undone": true, "stockEffect": 50, "undoneAt": "19.11.2026 09:35:06"}, {"id": "mv179507013990862q", "itemId": "excel-016", "deviceId": "excel-016", "groupId": "", "itemName": "Çekpas Sapsız 37 cm", "kind": "general", "type": "Giriş", "reason": "Satın alma / yeni malzeme", "qty": 50, "unit": "adet", "brand": "", "model": "çekpas 37 cm sapsız plastik uç", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-19", "createdAt": "19.11.2026 09:35:39", "person": "Maksat/ Hamza", "location": ".", "note": "", "undone": false, "stockEffect": 50}, {"id": "mv1795070164210kqs", "itemId": "excel-016", "deviceId": "excel-016", "groupId": "", "itemName": "Çekpas Sapsız 37 cm", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 4, "unit": "adet", "brand": "", "model": "çekpas 37 cm sapsız plastik uç", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-19", "createdAt": "19.11.2026 09:36:04", "person": "Maksat", "location": ".", "note": "", "undone": false, "stockEffect": -4}, {"id": "mv17950701827900t9", "itemId": "excel-016", "deviceId": "excel-016", "groupId": "", "itemName": "Çekpas Sapsız 37 cm", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 6, "unit": "adet", "brand": "", "model": "çekpas 37 cm sapsız plastik uç", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-19", "createdAt": "19.11.2026 09:36:22", "person": "Aleksandr", "location": ".", "note": "", "undone": false, "stockEffect": -6}, {"id": "mv1795070197895kmp", "itemId": "excel-016", "deviceId": "excel-016", "groupId": "", "itemName": "Çekpas Sapsız 37 cm", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 3, "unit": "adet", "brand": "", "model": "çekpas 37 cm sapsız plastik uç", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-19", "createdAt": "19.11.2026 09:36:37", "person": "Rustam", "location": ".", "note": "", "undone": false, "stockEffect": -3}, {"id": "mv1795070214866dar", "itemId": "excel-016", "deviceId": "excel-016", "groupId": "", "itemName": "Çekpas Sapsız 37 cm", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 3, "unit": "adet", "brand": "", "model": "çekpas 37 cm sapsız plastik uç", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-19", "createdAt": "19.11.2026 09:36:54", "person": "Aydın dundar", "location": ".", "note": "", "undone": false, "stockEffect": -3}, {"id": "mv1795070416486ox4", "itemId": "excel-027", "deviceId": "excel-027", "groupId": "", "itemName": "Çuval Büyük Boy Big Bag", "kind": "general", "type": "Çıkış", "reason": "Sahaya gönderildi", "qty": 10, "unit": "adet", "brand": "", "model": "büyük çuval 90*90*140", "serial": "", "chip": "", "stockNo": "", "barcode": "", "date": "2026-11-19", "createdAt": "19.11.2026 09:40:16", "person": "Hasan Basri", "location": ".", "note": "", "undone": false, "stockEffect": -10}]}};
+const __whHadLocalData=!!localStorage.getItem(STORE);
+let db=JSON.parse(localStorage.getItem(STORE)||'null');
+if(!db){db=JSON.parse(JSON.stringify(INITIAL_DB));}
+// Eski/eksik/tekrarlanan kimlikleri açılışta bir kez düzelt.
+const usedIds=new Set();
+db.items.forEach((item,i)=>{
+ item.statusDepoda=false;
+ if(item.statusKullanimDisi===undefined)item.statusKullanimDisi=false;
+ let id=item.id==null?'':String(item.id);
+ if(!id || usedIds.has(id)){id='wh-'+Date.now().toString(36)+'-'+i+'-'+Math.random().toString(36).slice(2,7);item.id=id;}
+ usedIds.add(id); if(!Array.isArray(item.logs)) item.logs=[];
+});
+if(!Array.isArray(db.moves)) db.moves=[];
+localStorage.setItem(STORE,JSON.stringify(db));
+let activeFilter='all',openHistory='',currentView='compact',openCompactDetail='';
+// 1.9.25: cihazlar ayrı kayıtlar olarak kalır; grup işlemleri her zaman tek cihaz kimliği üzerinden yürütülür.
+db.items.forEach(x=>{if(x.groupId===undefined)x.groupId='';});
+let editingItemRef=null, editingItemId='', editingItemSnapshot=null;
+const $=id=>document.getElementById(id);
+const todayLocal=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');};
+const norm=v=>String(v??'').toLocaleLowerCase('tr-TR').replace(/ı/g,'i').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let barcodeStream=null, barcodeTargetId='', barcodeLoopId=0, barcodeDetector=null, barcodeBusy=false;
+async function startBarcodeScan(targetId){
+ barcodeTargetId=targetId;
+ const modal=$('barcodeModal'),video=$('barcodeVideo'),status=$('barcodeStatus');
+ modal.classList.remove('hidden'); status.textContent='Kamera başlatılıyor…';
+ if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){status.textContent='Bu tarayıcı kamera erişimini desteklemiyor. Chrome kullanın veya barkod numarasını elle girin.';return;}
+ if(!('BarcodeDetector' in window)){status.textContent='Bu tarayıcıda yerleşik barkod tanıma desteği bulunmuyor. Barkod numarasını elle girebilirsiniz; destekli Chrome sürümünde tekrar deneyin.';return;}
+ try{
+  const supported=await BarcodeDetector.getSupportedFormats();
+  const preferred=['ean_13','ean_8','upc_a','upc_e','code_128','code_39','itf','qr_code'];
+  const formats=preferred.filter(f=>supported.includes(f));
+  barcodeDetector=new BarcodeDetector({formats:formats.length?formats:supported});
+  barcodeStream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'}}});
+  video.srcObject=barcodeStream; await video.play(); status.textContent='Barkodu kameraya gösterin…';
+  barcodeBusy=false; scanBarcodeFrame();
+ }catch(err){
+  status.textContent=err&&err.name==='NotAllowedError'?'Kamera izni verilmedi. Tarayıcı ayarlarından kamera iznini açın.':(err&&err.name==='NotFoundError'?'Kullanılabilir kamera bulunamadı.':'Kamera açılamadı: '+(err.message||err));
+  stopBarcodeCameraOnly();
+ }
+}
+async function scanBarcodeFrame(){
+ const video=$('barcodeVideo');
+ if(!barcodeStream||!barcodeDetector||!video)return;
+ if(video.readyState<2){barcodeLoopId=requestAnimationFrame(scanBarcodeFrame);return;}
+ if(!barcodeBusy){
+  barcodeBusy=true;
+  try{
+   const codes=await barcodeDetector.detect(video);
+   if(codes&&codes.length&&codes[0].rawValue){
+    const value=String(codes[0].rawValue).trim();
+    $(barcodeTargetId).value=value;
+    $('barcodeStatus').textContent='Barkod okundu: '+value;
+    stopBarcodeCameraOnly();
+    setTimeout(()=>{ $('barcodeModal').classList.add('hidden'); $(barcodeTargetId).focus(); },650);
+    return;
+   }
+  }catch(e){ /* Kare henüz okunamadı; sonraki kare denenir. */ }
+  barcodeBusy=false;
+ }
+ barcodeLoopId=requestAnimationFrame(scanBarcodeFrame);
+}
+function stopBarcodeCameraOnly(){
+ if(barcodeLoopId)cancelAnimationFrame(barcodeLoopId);barcodeLoopId=0;
+ if(barcodeStream){barcodeStream.getTracks().forEach(t=>t.stop());barcodeStream=null;}
+ const v=$('barcodeVideo');if(v){v.pause();v.srcObject=null;}
+ barcodeDetector=null;barcodeBusy=false;
+}
+function stopBarcodeScan(){stopBarcodeCameraOnly();$('barcodeModal').classList.add('hidden');}
+
+async function recoverFromSafetyVault(){
+ if(!confirm('İkinci yerel kopya kontrol edilecek. Kurtarma yapılırsa mevcut ekrandaki kayıtlar önce JSON olarak indirilecek ve ardından ikinci kopya geri yüklenecek. Devam edilsin mi?'))return;
+ try{
+  const req=indexedDB.open('SahaPulseSafetyVault_TEST25',1);
+  const dbi=await new Promise((resolve,reject)=>{req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
+  if(!dbi.objectStoreNames.contains('snapshots'))throw new Error('İkinci kopya bulunamadı.');
+  const tx=dbi.transaction('snapshots','readonly');
+  const row=await new Promise((resolve,reject)=>{const q=tx.objectStore('snapshots').get(STORE);q.onsuccess=()=>resolve(q.result);q.onerror=()=>reject(q.error);});
+  if(!row||!row.json)throw new Error('Bu uygulama için kayıtlı ikinci kopya bulunamadı.');
+  const recovered=JSON.parse(row.json);
+  if(!recovered||!Array.isArray(recovered.items)||!Array.isArray(recovered.moves))throw new Error('İkinci kopya doğrulanamadı.');
+  const current=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(current),a=document.createElement('a');a.href=url;a.download='SahaPulse_Kurtarma_Oncesi_'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
+  db=recovered;persist();render();renderDaily();
+  alert('İkinci kopya geri yüklendi. Kopyanın kayıt zamanı: '+new Date(row.savedAt||Date.now()).toLocaleString('tr-TR'));
+ }catch(e){alert('Kurtarma yapılamadı: '+(e.message||e));}
+}
+function persist(){
+ const snapshot=JSON.stringify(db);
+ try{localStorage.setItem(STORE,snapshot);window.__whSaveState='Cihaza kaydedildi';}catch(e){window.__whSaveState='Kayıt hatası: cihaz hafızası dolu olabilir';console.error(e);}
+ // İkinci yerel kopya: IndexedDB. İnternet gerekmez; tarayıcı kapansa da kalır.
+ try{const req=indexedDB.open('SahaPulseSafetyVault_TEST25',1);req.onupgradeneeded=()=>{if(!req.result.objectStoreNames.contains('snapshots'))req.result.createObjectStore('snapshots');};req.onsuccess=()=>{const tx=req.result.transaction('snapshots','readwrite');tx.objectStore('snapshots').put({json:snapshot,savedAt:new Date().toISOString()},STORE);tx.oncomplete=()=>{const el=document.getElementById('storageState');if(el)el.textContent='Otomatik kayıt: cihaz + ikinci yerel kopya';};tx.onerror=()=>{const el=document.getElementById('storageState');if(el)el.textContent='Cihaza kaydedildi · ikinci kopya başarısız';};};req.onerror=()=>{const el=document.getElementById('storageState');if(el)el.textContent='Cihaza kaydedildi · ikinci kopya kullanılamıyor';};}catch(e){console.warn('IndexedDB yedeği kullanılamadı',e);}
+ if(window.WorkHubCloud)window.WorkHubCloud.queueSave(snapshot);
+ const badge=document.getElementById('saveState');if(badge)badge.textContent=window.__whSaveState||'Kaydedildi';
+}
+
+const ROW_COLOR_MAP={
+ red:{label:'Kırmızı',hex:'#ef4444',cls:'row-color-red'},
+ amber:{label:'Turuncu',hex:'#f97316',cls:'row-color-amber'},
+ yellow:{label:'Sarı',hex:'#eab308',cls:'row-color-yellow'},
+ green:{label:'Yeşil',hex:'#22c55e',cls:'row-color-green'},
+ blue:{label:'Mavi',hex:'#3b82f6',cls:'row-color-blue'},
+ purple:{label:'Mor',hex:'#a855f7',cls:'row-color-purple'}
+};
+let activeColorItemId='';
+function rowColorClass(c){return (c && ROW_COLOR_MAP[c]) ? ROW_COLOR_MAP[c].cls : '';}
+function dominantGroupColor(g){
+ const counts={};
+ (g.members||[]).forEach(m=>{if(m.rowColor && ROW_COLOR_MAP[m.rowColor]) counts[m.rowColor]=(counts[m.rowColor]||0)+1;});
+ const top=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];
+ return top ? top[0] : '';
+}
+function colorChipButton(x){
+ const c=x.rowColor && ROW_COLOR_MAP[x.rowColor] ? ROW_COLOR_MAP[x.rowColor] : null;
+ const dot=c ? c.hex : '#cbd5e1';
+ const txt=c ? c.label : 'Renk';
+ return `<button type="button" class="color-chip-btn" onclick="event.stopPropagation();openRowColorMenu('${esc(x.id)}',this)" title="Satır rengi seç"><span class="color-dot-preview" style="background:${dot}"></span>${txt}</button>`;
+}
+function openRowColorMenu(itemId,btnEl){
+ const x=db.items.find(a=>String(a.id)===String(itemId)&&!a.deleted);
+ if(!x)return;
+ activeColorItemId=String(x.id);
+ const pop=$('rowColorPopover');
+ $('colorPopoverItemName').textContent=x.name;
+ pop.querySelectorAll('.color-swatch').forEach(b=>b.classList.toggle('active',b.dataset.color===(x.rowColor||'')));
+ pop.classList.remove('hidden');
+ const rect=btnEl.getBoundingClientRect();
+ const pw=pop.offsetWidth||300, ph=pop.offsetHeight||210;
+ let left=Math.min(Math.max(12,rect.left),window.innerWidth-pw-12);
+ let top=rect.bottom+8;
+ if(top+ph>window.innerHeight-12) top=Math.max(12,rect.top-ph-8);
+ pop.style.left=left+'px';
+ pop.style.top=top+'px';
+}
+function closeRowColorMenu(){
+ activeColorItemId='';
+ const pop=$('rowColorPopover');
+ if(pop)pop.classList.add('hidden');
+}
+function applyRowColor(colorKey){
+ if(!activeColorItemId)return;
+ const x=db.items.find(a=>String(a.id)===String(activeColorItemId)&&!a.deleted);
+ if(x){
+  x.rowColor=(colorKey && ROW_COLOR_MAP[colorKey]) ? colorKey : '';
+  persist();
+  render();
+ }
+ closeRowColorMenu();
+}
+document.addEventListener('click',e=>{
+ const pop=$('rowColorPopover');
+ if(!pop || pop.classList.contains('hidden'))return;
+ if(!pop.contains(e.target) && !e.target.closest('.color-chip-btn'))closeRowColorMenu();
+});
+
+function isFault(x){return !!x.statusArizali;}
+function statusPills(x){return (x.statusSahada?'<span class="pill field">SAHADA</span>':'')+(x.statusTamirde?'<span class="pill repair">TAMİRDE</span>':'')+(x.statusKullanimDisi?'<span class="pill muted">KULLANIM DIŞI</span>':'')+(x.statusArizali?'<span class="pill bad">ARIZALI</span>':'');}
+function statusDetails(x){return statusPills(x)+(x.statusNote?'<div class="meta">Durum açıklaması: '+esc(x.statusNote)+'</div>':'');}
+function showPage(page){const ids={list:'listPage',new:'newPage',daily:'dailyPage'};Object.entries(ids).forEach(([k,id])=>$(id).classList.toggle('hidden',k!==page));['list','new','daily'].forEach(k=>$('tab'+(k==='list'?'List':k==='new'?'New':'Daily')).classList.toggle('active',k===page));if(page==='list')render();if(page==='daily')renderDaily();window.scrollTo({top:0,behavior:'auto'});}
+function setFilter(f,b){activeFilter=f;document.querySelectorAll('.filters button').forEach(x=>x.classList.toggle('active',x===b));render();}
+function setView(v){currentView=v;$('cardViewBtn').classList.toggle('active',v==='cards');$('listViewBtn').classList.toggle('active',v==='compact');render();}
+function render(){
+ const q=norm($('search').value.trim());
+ let list=db.items.filter(x=>{
+  if(x.deleted)return false;
+  if(activeFilter==='electric'&&x.kind!=='electric')return false;
+  if(activeFilter==='faulty'&&!isFault(x))return false;
+  if(activeFilter==='repair'&&!x.statusTamirde)return false;
+  if(activeFilter==='out'&&Number(x.qty)!==0)return false;
+  const hay=[x.name,x.brand,x.model,x.serial,x.chip,x.stockNo,x.barcode,x.note].map(norm).join(' ');
+  return !q||hay.includes(q);
+ });
+ const sort=$('sortItems')?.value||'name';list.sort((a,b)=>sort==='qtyDesc'?(b.qty-a.qty)||a.name.localeCompare(b.name,'tr'):sort==='qtyAsc'?(a.qty-b.qty)||a.name.localeCompare(b.name,'tr'):a.name.localeCompare(b.name,'tr'));
+ const activeItems=db.items.filter(x=>!x.deleted);
+ const filterCounts={all:activeItems.length,electric:activeItems.filter(x=>x.kind==='electric').length,faulty:activeItems.filter(x=>!!x.statusArizali).length,repair:activeItems.filter(x=>!!x.statusTamirde).length,out:activeItems.filter(x=>Number(x.qty)===0).length};
+ document.querySelectorAll('.filters button[data-filter]').forEach(btn=>{const key=btn.dataset.filter;const labels={all:'Tüm Malzemeler',electric:'Elektrikli',faulty:'Arızalı',repair:'Tamirde',out:'Stokta Olmayanlar'};if(labels[key])btn.textContent=labels[key]+' ('+(filterCounts[key]||0)+')';});
+ // Gruplu cihazları tek satır/kart olarak göster; asıl cihaz kayıtları ayrı tutulur.
+ const consumed=new Set(),rows=[];
+ for(const x of list){if(consumed.has(String(x.id)))continue; if(x.groupId){const members=db.items.filter(y=>!y.deleted&&String(y.groupId)===String(x.groupId));members.forEach(y=>consumed.add(String(y.id)));if(members.length){rows.push({__group:true,id:'group-'+x.groupId,groupId:x.groupId,name:x.groupTitle||x.name,members,qty:members.reduce((n,y)=>n+Number(y.qty||0),0),unit:x.unit||'adet'});} }else{consumed.add(String(x.id));rows.push(x);}}
+ $('resultCount').textContent=rows.length+' kart gösteriliyor · '+list.length+' cihaz/malzeme kaydı';
+ const identityLine=x=>[x.brand?'Marka: '+x.brand:'',x.model?'Model: '+x.model:'',x.serial?'Seri No: '+x.serial:'',x.chip?'Çip No: '+x.chip:'',x.stockNo?'Stok No: '+x.stockNo:'',x.barcode?'Barkod: '+x.barcode:''].filter(Boolean).join(' · ');
+ const memberHtml=(m)=>`<div class="logrow"><b>${esc(m.name)}</b> · ${esc(m.qty)} ${esc(m.unit||'adet')} ${statusPills(m)}<div class="meta">${esc(identityLine(m)||'Kimlik bilgisi girilmemiş')}${m.statusNote?'<br>'+esc(m.statusNote):''}</div><div class="actions"><button class="primary" onclick="quickMove('${m.id}')">Bu cihaz için Giriş / Çıkış</button><button onclick="editItem('${m.id}')">Düzelt</button><button onclick="toggleHistory('${m.id}')">Hareketler (${(m.logs||[]).length})</button></div>${openHistory===m.id?`<div class="history">${(m.logs||[]).map((z,i)=>`<div class="logrow"><b>${esc(z.type)}</b> · ${esc(z.qty)} ${esc(m.unit||'adet')} · ${esc(z.date)}<br>${esc(z.person||'')}${z.location?' · '+esc(z.location):''}${z.note?' · '+esc(z.note):''}</div>`).join('')||'Henüz hareket kaydı yok.'}</div>`:''}</div>`;
+ if(currentView==='compact'){
+  $('items').innerHTML=rows.length?`<div class="compact-wrap"><table class="compact-table"><thead><tr><th>Malzeme</th><th>Miktar</th><th>Durum / Renk</th></tr></thead><tbody>${rows.map(x=>x.__group?`<tr class="compact-row ${esc(rowColorClass(dominantGroupColor(x)))}" role="button" tabindex="0" aria-expanded="${openCompactDetail==='g'+x.groupId}" onclick="toggleGroupDetail('${x.groupId}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleGroupDetail('${x.groupId}')}"><td><b>${esc(x.name)}</b><div class="muted">BİRLEŞTİRİLMİŞ CİHAZ GRUBU · ${x.members.length} cihaz</div></td><td class="qtycell">${esc(x.qty)} ${esc(x.unit)}</td><td><button onclick="event.stopPropagation();toggleGroupDetail('${x.groupId}')">Cihazları Gör</button><button onclick="event.stopPropagation();ungroupGroup('${x.groupId}')">Ayır</button></td></tr>${openCompactDetail==='g'+x.groupId?`<tr class="compact-detail"><td colspan="3">${x.members.map(memberHtml).join('')}</td></tr>`:''}`:`<tr class="compact-row ${esc(rowColorClass(x.rowColor))}" role="button" tabindex="0" aria-expanded="${openCompactDetail===x.id}" onclick="toggleCompactDetail('${x.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleCompactDetail('${x.id}')}" ><td><b>${esc(x.name)}</b><div class="muted">${x.kind==='electric'?'ELEKTRİKLİ':''}${x.brand?(x.kind==='electric'?' · ':'')+esc(x.brand):''}${x.model?' · '+esc(x.model):''}</div></td><td class="qtycell">${esc(x.qty)} ${esc(x.unit)}</td><td>${statusPills(x)}${colorChipButton(x)}</td></tr>${openCompactDetail===x.id?`<tr class="compact-detail"><td colspan="3"><div class="meta">${esc(identityLine(x))}${x.note?'<br>Açıklama: '+esc(x.note):''}</div><div class="actions"><button onclick="toggleCompactDetail('${x.id}')">Kapat</button><button class="primary" onclick="toggleHistory('${x.id}')">Hareketler (${(x.logs||[]).length})</button><button onclick="quickMove('${x.id}')">Giriş / Çıkış</button><button onclick="editItem('${x.id}')">Düzelt</button>${colorChipButton(x)}<button class="danger" onclick="archiveItem('${x.id}')">Arşivle</button><button class="danger permanent-delete" onclick="permanentlyDeleteItem('${x.id}')">Kalıcı Sil</button></div>${openHistory===x.id?`<div class="history">${(x.logs||[]).map((m,i)=>`<div class="logrow"><b>${esc(m.type)}${m.reason?' · '+esc(m.reason):''}</b> · ${esc(m.qty)} ${esc(x.unit)} · ${esc(m.date)}<br>${esc(m.person||'')}${m.location?' · '+esc(m.location):''}${m.note?' · '+esc(m.note):''}</div>`).join('')||'Henüz hareket kaydı yok.'}</div>`:''}</td></tr>`:''}`).join('')}</tbody></table></div>`:'<div class="empty">Bu filtrede kayıt bulunamadı.</div>';
+ }else{
+  $('items').innerHTML=rows.length?rows.map(x=>x.__group?`<article class="item ${esc(rowColorClass(dominantGroupColor(x)))}"><div class="itemtop"><div><div class="itemname">${esc(x.name)}</div><span class="pill e">BİRLEŞTİRİLMİŞ GRUP · ${x.members.length} CİHAZ</span></div><div class="qty">${esc(x.qty)} ${esc(x.unit)}</div></div><div class="meta">Cihazların seri/çip/barkod bilgileri ve hareket geçmişleri ayrı ayrı korunur.</div><div class="actions"><button class="primary" onclick="toggleGroupDetail('${x.groupId}')">Cihazları Gör / İşlem Yap</button><button onclick="ungroupGroup('${x.groupId}')">Grubu Ayır</button></div>${openCompactDetail==='g'+x.groupId?`<div class="history">${x.members.map(memberHtml).join('')}</div>`:''}</article>`:`<article class="item ${esc(rowColorClass(x.rowColor))}"><div class="itemtop"><div><div class="itemname">${esc(x.name)}</div><div>${x.kind==='electric'?'<span class="pill e">ELEKTRİKLİ</span>':''}${statusPills(x)}</div></div><div class="qty">${esc(x.qty)} ${esc(x.unit)}</div></div><div class="meta">${esc(identityLine(x))}${x.note?'<br>Açıklama: '+esc(x.note):''}${x.statusNote?'<br><b>Durum açıklaması:</b> '+esc(x.statusNote):''}</div><div class="actions"><button class="primary" onclick="toggleHistory('${x.id}')">Hareketler (${(x.logs||[]).length})</button><button onclick="quickMove('${x.id}')">Giriş / Çıkış</button><button onclick="editItem('${x.id}')">Düzelt</button>${colorChipButton(x)}<button class="danger" onclick="archiveItem('${x.id}')">Arşivle</button><button class="danger permanent-delete" onclick="permanentlyDeleteItem('${x.id}')">Kalıcı Sil</button></div>${openHistory===x.id?`<div class="history">${(x.logs||[]).map((m,i)=>`<div class="logrow"><b>${esc(m.type)}</b> · ${esc(m.qty)} ${esc(x.unit)} · ${esc(m.date)}<br>${esc(m.person||'')}${m.location?' · '+esc(m.location):''}${m.note?' · '+esc(m.note):''}</div>`).join('')||'Henüz hareket kaydı yok.'}</div>`:''}</article>`).join(''):'<div class="empty">Bu filtrede kayıt bulunamadı.</div>';
+ }
+}
+function toggleGroupDetail(id){openCompactDetail=openCompactDetail==='g'+id?'':'g'+id;render();}
+function openGroupManager(){
+ const choices=$('groupChoices');const items=db.items.filter(x=>!x.deleted&&x.kind==='electric');
+ choices.innerHTML=items.length?items.map(x=>`<label style="display:flex;align-items:center;gap:8px;padding:8px;border-bottom:1px solid #edf1f6"><input type="checkbox" class="groupChoice" value="${esc(x.id)}" style="width:auto"><span><b>${esc(x.name)}</b><div class="muted">${esc([x.brand,x.model,x.serial?'Seri: '+x.serial:'',x.chip?'Çip: '+x.chip:''].filter(Boolean).join(' · '))}${x.groupId?' · Gruplu':''}</div></span></label>`).join(''):'<div class="empty">Elektrikli cihaz kaydı yok.</div>';
+ $('groupTitle').value='';$('groupModal').classList.remove('hidden');
+}
+function closeGroupManager(){$('groupModal').classList.add('hidden');}
+function selectedGroupItems(){const ids=[...document.querySelectorAll('.groupChoice:checked')].map(e=>e.value);return db.items.filter(x=>ids.includes(String(x.id))&&!x.deleted);}
+function applyDeviceGroup(){
+ const chosen=selectedGroupItems();if(chosen.length<2)return alert('Birleştirmek için en az iki cihaz seçin.');if(chosen.some(x=>x.kind!=='electric'))return alert('Yalnızca elektrikli cihazlar gruplandırılabilir.');
+ const unitKey=x=>String(x.unit||'adet').trim().toLocaleLowerCase('tr-TR');if(chosen.some(x=>unitKey(x)!==unitKey(chosen[0])))return alert('Farklı birimlerdeki cihazlar aynı grupta birleştirilemez.');
+ const title=$('groupTitle').value.trim()||chosen[0].name;const groupId='grp-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,6);
+ chosen.forEach(x=>{x.groupId=groupId;x.groupTitle=title;});persist();closeGroupManager();render();alert(chosen.length+' cihaz “'+title+'” başlığı altında birleştirildi. Cihaz kayıtları ve geçmişleri ayrı tutuluyor.');
+}
+function ungroupSelectedDevices(){const chosen=selectedGroupItems();if(!chosen.length)return alert('Ayırmak için gruplu cihaz seçin.');chosen.forEach(x=>{x.groupId='';x.groupTitle='';});persist();closeGroupManager();render();alert(chosen.length+' cihaz gruptan ayrıldı.');}
+function ungroupGroup(groupId){const members=db.items.filter(x=>String(x.groupId)===String(groupId));if(!members.length)return; if(!confirm(members.length+' cihazı ayrı kartlara ayırmak istiyor musunuz?'))return;members.forEach(x=>{x.groupId='';x.groupTitle='';});persist();render();}
+
+function toggleCompactDetail(id){openCompactDetail=openCompactDetail===id?'':id;render();}
+function toggleHistory(id){openHistory=openHistory===id?'':id;render();}
+let repairPendingItemId=null, repairPreviousStatus=false, repairAction='send';
+function openRepairDispatch(x, previousStatus, action){
+ repairPendingItemId=String(x.id);repairPreviousStatus=previousStatus===undefined?!!x.statusTamirde:!!previousStatus;repairAction=action||'send';
+ $('repairItemId').value=String(x.id);$('repairItemTitle').textContent=x.name;
+ $('repairAutoDetails').textContent=[x.brand?'Marka: '+x.brand:'',x.model?'Model: '+x.model:'',x.serial?'Seri No: '+x.serial:'Seri No: yok',x.chip?'Çip No: '+x.chip:'Çip No: yok'].filter(Boolean).join(' · ');
+ $('repairDate').value=todayLocal();$('repairPerson').value='';$('repairNote').value='';
+ $('repairModal').querySelector('h3').textContent=repairAction==='send'?'Tamire gönderme kaydı':'Tamirden teslim alma kaydı';
+ $('repairModal').querySelector('.primary').textContent=repairAction==='send'?'Tamire gönder':'Tamirden teslim al';
+ $('repairHelp').textContent=repairAction==='send'?'Tamire gönderildiğinde depo stoku 1 azalır; toplam cihaz kaydı silinmez.':'Tamirden teslim alındığında depo stoku 1 artar. Her iki işlem de günlük hareketlere kaydedilir.';
+ $('repairModal').classList.remove('hidden');
+}
+function cancelRepairDispatch(){
+ const id=repairPendingItemId;
+ if(id){const x=db.items.find(a=>String(a.id)===id);if(x){x.statusTamirde=repairPreviousStatus;if(repairAction==='send'&&!repairPreviousStatus){x.statusDepoda=true;x.statusSahada=false;x.statusKullanimDisi=false;}}}
+ if($('editId')&&String($('editId').value)===String(id)){$('editTamirde').checked=repairPreviousStatus;const x=db.items.find(a=>String(a.id)===String(id));if(x)$('editQty').value=x.qty;}
+ $('repairModal').classList.add('hidden');repairPendingItemId=null;persist();render();
+}
+function saveRepairDispatch(){
+ const id=String($('repairItemId').value),x=db.items.find(a=>String(a.id)===id&&!a.deleted);if(!x)return alert('Malzeme kartı bulunamadı.');
+ const date=$('repairDate').value,person=$('repairPerson').value.trim(),note=$('repairNote').value.trim();
+ if(!date)return alert('İşlem tarihi zorunludur.');if(!person)return alert('Teslim eden / teslim alan kişi bilgisini girin.');
+ if(repairAction==='send'&&Number(x.qty)<1)return alert('Depoda kullanılabilir stok yok. Tamire gönderilemez.');
+ const details=[x.brand?'Marka: '+x.brand:'',x.model?'Model: '+x.model:'',x.serial?'Seri No: '+x.serial:'',x.chip?'Çip No: '+x.chip:''].filter(Boolean).join(' · ');
+ const type=repairAction==='send'?'Tamire gönderildi':'Tamirden teslim alındı';
+ const delta=repairAction==='send'?-1:1;
+ const movement={id:'mv'+Date.now()+Math.random().toString(36).slice(2,5),itemId:x.id,itemName:x.name,kind:x.kind||'general',type,qty:1,unit:x.unit||'adet',brand:x.brand||'',model:x.model||'',serial:x.serial||'',chip:x.chip||'',date,createdAt:new Date().toLocaleString('tr-TR'),person,location:repairAction==='send'?'Tamir':'Depo',note:[details,note].filter(Boolean).join(' · '),undone:false,stockEffect:delta};
+ x.qty=Number((Number(x.qty||0)+delta).toFixed(2));x.statusTamirde=repairAction==='send';x.statusDepoda=repairAction==='return';x.statusSahada=false;x.statusKullanimDisi=false;
+ x.logs.unshift({type,qty:1,delta,date,person,location:movement.location,note:movement.note,undone:false,movementId:movement.id});db.moves.push(movement);
+ $('repairModal').classList.add('hidden');repairPendingItemId=null;
+ if($('editId')&&String($('editId').value)===id){$('editQty').value=x.qty;$('editTamirde').checked=x.statusTamirde;}
+ persist();render();renderDaily();
+}
+function bindExclusiveLocation(prefix){
+ const ids=['Sahada','Tamirde','KullanimDisi'];ids.forEach(name=>{const el=$(prefix+name);if(!el)return;el.addEventListener('change',()=>{if(!el.checked)return;ids.filter(n=>n!==name).forEach(n=>{const other=$(prefix+n);if(other)other.checked=false;});});});
+}
+bindExclusiveLocation('new');bindExclusiveLocation('edit');
+
+function deviceIdentityText(x){return [x.brand?'Marka: '+x.brand:'',x.model?'Model: '+x.model:'',x.serial?'Seri No: '+x.serial:'',x.chip?'Çip No: '+x.chip:'',x.stockNo?'Stok No: '+x.stockNo:'',x.barcode?'Barkod: '+x.barcode:''].filter(Boolean).join(' · ')||'Cihaz kimliği girilmemiş';}
+function isIntegerUnit(unit){
+ const u=String(unit||'').trim().toLocaleLowerCase('tr-TR');
+ return ['adet','kutu','paket','çuval','kova','rulo','takım','set'].includes(u);
+}
+function applyMoveQtyStep(unit){
+ const qty=$('moveQty');if(!qty)return;
+ const integer=isIntegerUnit(unit);qty.step=integer?'1':'0.01';
+ const value=Number(qty.value);if(integer&&Number.isFinite(value)&&value%1!==0)qty.value=String(Math.round(value));
+}
+function applyNewQtyStep(){
+ const qty=$('newQty');if(!qty)return;
+ const integer=isIntegerUnit($('newUnit')?.value);qty.step=integer?'1':'0.01';
+ const value=Number(qty.value);if(integer&&Number.isFinite(value)&&value%1!==0)qty.value=String(Math.round(value));
+}
+function quickMove(id){
+ const x=db.items.find(a=>String(a.id)===String(id)&&!a.deleted);if(!x)return;
+ // Grup kartı üzerinden işlem yapılamaz; hareket daima seçilen tek cihazın gerçek ID'sine bağlanır.
+ $('moveItemId').value=String(x.id);$('moveItemName').textContent=x.name;$('moveCurrentQty').textContent=x.qty+' '+(x.unit||'adet');$('moveDeviceIdentity').textContent=deviceIdentityText(x);
+ $('moveType').value='Çıkış';$('moveQty').value='1';$('moveDate').value=todayLocal();$('moveNote').value='';updateMoveLabels();
+ $('moveReason').value='Sahaya gönderildi';applyMoveQtyStep(x.unit||'adet');
+ const last=JSON.parse(localStorage.getItem('saha_pulse_last_movement_fields')||'{}');
+ $('movePerson').value=last.person||'';$('moveLocation').value=last.location||'';
+ updateMoveLabels();$('moveModal').classList.remove('hidden');setTimeout(()=>$('moveQty').focus(),50);
+}
+function updateMoveLabels(){
+ const t=$('moveType').value,out=t==='Çıkış',sel=$('moveReason'),old=sel.value;
+ const opts=out?[
+  ['Sahaya gönderildi','Sahaya gönderildi'],['Tamire gönderildi','Tamire gönderildi']
+ ]:[
+  ['Sahadan iade alındı','Sahadan iade alındı'],['Tamirden teslim alındı','Tamirden teslim alındı'],['Satın alma / yeni malzeme','Satın alma / yeni malzeme']
+ ];
+ sel.innerHTML=opts.map(([v,l])=>`<option value="${v}">${l}</option>`).join('');if(opts.some(o=>o[0]===old))sel.value=old;
+ $('movePersonLabel').textContent=out?'Kime teslim edildi?':'Kimden teslim alındı? / Tedarikçi';
+ $('moveLocationLabel').textContent=out?'Nereye verildi? (Saha / servis)':'Nereden geldi? (Saha / servis / tedarikçi)';
+}
+function closeMove(){$('moveModal').classList.add('hidden');}
+function saveMove(){
+ const id=String($('moveItemId').value||''),x=db.items.find(a=>String(a.id)===id&&!a.deleted);if(!x)return alert('Seçilen cihazın malzeme kaydı bulunamadı. İşlemi kapatıp cihazı yeniden seçin.');
+ // Aynı gruptaki diğer cihazların stok/durum/geçmiş değerlerini işlem öncesi koruma kontrolüne al.
+ const siblingSnapshot=x.groupId?db.items.filter(a=>!a.deleted&&String(a.groupId)===String(x.groupId)&&String(a.id)!==id).map(a=>({id:String(a.id),qty:Number(a.qty||0),statusSahada:!!a.statusSahada,statusTamirde:!!a.statusTamirde,logs:(a.logs||[]).length})):[];
+ const t=$('moveType').value,reason=$('moveReason').value,n=Number($('moveQty').value),dateKey=$('moveDate').value,person=$('movePerson').value.trim(),location=$('moveLocation').value.trim(),note=$('moveNote').value.trim();
+ if(!['Giriş','Çıkış'].includes(t))return alert('İşlem türünü seçin.');
+ if(!reason)return alert('İşlem nedenini seçin.');
+ if(t==='Çıkış'&&x.statusTamirde&&reason==='Sahaya gönderildi')return alert('Bu malzeme tamirde olduğu için sahaya çıkış yapılamaz. Önce tamirden teslim alma işlemi yapın.');
+ if(t==='Çıkış'&&reason==='Tamire gönderildi'){
+  const repairMoves=(db.moves||[]).filter(m=>String(m.itemId)===String(x.id)&&!m.undone&&(m.reason==='Tamire gönderildi'||m.reason==='Tamirden teslim alındı'));
+  const lastRepairMove=repairMoves[repairMoves.length-1];
+  if(lastRepairMove&&lastRepairMove.reason==='Tamire gönderildi')return alert('Bu malzeme için zaten açık bir tamir gönderme kaydı var. Önce tamirden teslim alma işlemini kaydedin.');
+ }
+ if(!Number.isFinite(n)||n<=0)return alert('Miktar sıfırdan büyük olmalı.');
+ if(isIntegerUnit(x.unit)&&!Number.isInteger(n))return alert('Bu birimde miktar tam sayı olmalıdır.');
+ if(t==='Çıkış'&&n>Number(x.qty))return alert('Yetersiz stok. Mevcut miktar: '+x.qty+' '+x.unit);
+ if(!dateKey)return alert('İşlem tarihi zorunludur.');
+ if(!person)return alert(t==='Çıkış'?'Teslim alan kişi bilgisini girin.':'Teslim eden kişi / tedarikçi bilgisini girin.');
+ if(!location)return alert('Saha / servis / kaynak bilgisini girin.');
+ if(t==='Çıkış'&&reason==='Satış')return alert('Satış işlemi henüz etkin değil.');
+ const now=new Date(),stamp=now.toLocaleString('tr-TR',{hour12:false});
+ const delta=t==='Giriş'?n:-n;
+ const movement={id:'mv'+Date.now()+Math.random().toString(36).slice(2,5),itemId:x.id,deviceId:String(x.id),groupId:x.groupId||'',itemName:x.name,kind:x.kind||'general',type:t,reason,qty:n,unit:x.unit,brand:x.brand||'',model:x.model||'',serial:x.serial||'',chip:x.chip||'',stockNo:x.stockNo||'',barcode:x.barcode||'',date:dateKey,createdAt:stamp,person,location,note,undone:false,stockEffect:delta};
+ x.qty=Number((Number(x.qty||0)+delta).toFixed(2));
+ if(reason==='Sahaya gönderildi'){x.statusSahada=true;x.statusTamirde=false;x.statusKullanimDisi=false;}
+ else if(reason==='Tamire gönderildi'){x.statusTamirde=true;x.statusSahada=false;x.statusKullanimDisi=false;}
+ else if(reason==='Sahadan iade alındı'){x.statusSahada=false;}
+ else if(reason==='Tamirden teslim alındı'){x.statusTamirde=false;}
+ x.logs.unshift({type:t,reason,qty:n,delta,date:dateKey,createdAt:stamp,person,location,note,undone:false,movementId:movement.id,deviceId:String(x.id),serial:x.serial||'',chip:x.chip||''});db.moves.push(movement);
+ // Güvenlik doğrulaması: seçilmeyen grup üyelerinin stokları ve durumları değişmemiş olmalı.
+ const siblingChanged=siblingSnapshot.some(before=>{const after=db.items.find(a=>String(a.id)===before.id);return !after||Number(after.qty||0)!==before.qty||!!after.statusSahada!==before.statusSahada||!!after.statusTamirde!==before.statusTamirde||(after.logs||[]).length!==before.logs;});
+ if(siblingChanged){alert('Güvenlik kontrolü: seçilmeyen cihazın verisi değişti. İşlem kaydedilmedi; yedek veriyi koruyun.');return;}
+ localStorage.setItem('saha_pulse_last_movement_fields',JSON.stringify({person,location}));openHistory=id;closeMove();persist();render();renderDaily();
+}
+$('moveType').addEventListener('change',updateMoveLabels);
+$('newUnit').addEventListener('input',applyNewQtyStep);
+applyNewQtyStep();
+
+function addNew(){
+ const name=$('newName').value.trim(),qtyRaw=$('newQty').value.trim(),qty=Number(qtyRaw),unit=$('newUnit').value.trim()||'adet';
+ if(!name||qtyRaw===''||!Number.isFinite(qty)||qty<0)return alert('Malzeme adı ve geçerli miktar girin.');
+ if(isIntegerUnit(unit)&&!Number.isInteger(qty))return alert('Bu birimde miktar tam sayı olmalıdır.');
+ const statusNote=$('newStatusNote').value.trim(),arizali=$('newArizali').checked;
+ const x={id:'u'+Date.now(),name,kind:$('newKind').value,qty,unit,brand:$('newBrand').value.trim(),model:$('newModel').value.trim(),serial:$('newSerial').value.trim(),chip:$('newChip').value.trim(),stockNo:$('newStockNo').value.trim(),barcode:$('newBarcode').value.trim(),condition:arizali?'Arızalı':'Çalışıyor',fault:arizali?(statusNote||'Arıza açıklaması girilmedi.'):'',note:$('newNote').value.trim(),statusDepoda:false,statusSahada:$('newSahada').checked,statusArizali:arizali,statusTamirde:$('newTamirde').checked,statusKullanimDisi:$('newKullanimDisi').checked,statusNote,logs:[]};
+ db.items.push(x);['newName','newBrand','newModel','newSerial','newChip','newStockNo','newBarcode','newNote'].forEach(id=>$(id).value='');$('newQty').value='1';$('newUnit').value='adet';$('newKind').value='general';['newSahada','newArizali','newTamirde','newKullanimDisi'].forEach(id=>$(id).checked=false);$('newStatusNote').value='';$('search').value='';activeFilter='all';document.querySelectorAll('.filters button').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));persist();showPage('list');alert('Malzeme kaydedildi. Ana listede alfabetik sıraya yerleştirildi.');
+}
+
+function correctQty(id){
+ const x=db.items.find(a=>a.id===id&&!a.deleted);if(!x)return;
+ const raw=prompt('Yeni doğru stok miktarını girin:',String(x.qty));if(raw===null)return;
+ const next=Number(raw.replace(',','.'));if(!Number.isFinite(next)||next<0)return alert('Geçerli, sıfır veya daha büyük bir miktar girin.');
+ const delta=Number((next-x.qty).toFixed(2));if(delta===0)return alert('Miktar değişmedi.');
+ const note=prompt('Stok düzeltme açıklaması (zorunlu):','Sayım düzeltmesi');if(!note||!note.trim())return alert('Açıklama zorunludur.');
+ x.qty=next;x.logs.unshift({type:'Stok düzeltme',qty:Math.abs(delta),delta,date:new Date().toLocaleString('tr-TR'),person:'Ambar sorumlusu',note:note.trim(),undone:false});persist();render();
+}
+function undoMove(id,index){
+ const x=db.items.find(a=>a.id===id&&!a.deleted),m=x?.logs[index];if(!x||!m||m.undone||!Number.isFinite(m.delta)||m.delta===0)return;
+ if(!confirm('Bu hareket geri alınsın mı? Stok miktarı ters yönde düzeltilecek.'))return;
+ const next=Number((x.qty-m.delta).toFixed(2));if(next<0)return alert('Bu işlem geri alınırsa stok eksiye düşecek. Önce sonraki hareketleri kontrol edin.');
+ x.qty=next;m.undone=true;if(m.movementId){const mv=db.moves.find(z=>z.id===m.movementId);if(mv)mv.undone=true;}x.logs.unshift({type:'Hareket geri alma',qty:Math.abs(m.delta),delta:0,date:new Date().toLocaleString('tr-TR'),person:'Ambar sorumlusu',note:'Geri alınan işlem: '+m.type,undone:true});persist();openHistory=id;render();
+}
+function editItem(id){
+ const x=db.items.find(a=>String(a.id)===String(id)&&!a.deleted);if(!x){alert('Düzenlenecek kayıt bulunamadı.');return;}
+ editingItemRef=x; editingItemId=String(x.id);
+ // Kimlik beklenmedik biçimde değişirse güvenli eşleştirme için eski kartın ayırt edici alanlarını sakla.
+ editingItemSnapshot={name:String(x.name||''),serial:String(x.serial||''),chip:String(x.chip||''),model:String(x.model||''),brand:String(x.brand||'')};
+ $('editId').value=editingItemId;$('editName').value=x.name;$('editQty').value=Number(x.qty)||0;$('editKind').value=x.kind||'general';$('editUnit').value=x.unit||'adet';$('editBrand').value=x.brand||'';$('editModel').value=x.model||'';$('editSerial').value=x.serial||'';$('editChip').value=x.chip||'';$('editStockNo').value=x.stockNo||'';$('editBarcode').value=x.barcode||'';$('editNote').value=x.note||'';$('editSahada').checked=!!x.statusSahada;$('editArizali').checked=!!x.statusArizali;$('editTamirde').checked=!!x.statusTamirde;$('editKullanimDisi').checked=!!x.statusKullanimDisi;$('editStatusNote').value=x.statusNote||'';
+ $('editModal').classList.remove('hidden');
+}
+function closeEdit(){
+ const modal=$('editModal');if(modal)modal.classList.add('hidden');
+ editingItemRef=null; editingItemId=''; editingItemSnapshot=null;
+}
+function saveEdit(){
+ try{
+  const id=editingItemId||$('editId').value;
+  let index=db.items.findIndex(a=>String(a.id)===String(id)&&!a.deleted);
+  if(index<0 && editingItemRef) index=db.items.indexOf(editingItemRef);
+  // Eski kaydın kimliği uygulama sırasında değişmişse yalnızca tek ve kesin eşleşmede devam et.
+  if(index<0 && editingItemSnapshot){
+   const q=editingItemSnapshot;
+   const matches=db.items.map((a,i)=>({a,i})).filter(({a})=>!a.deleted && String(a.name||'')===q.name && String(a.serial||'')===q.serial && String(a.chip||'')===q.chip && String(a.model||'')===q.model && String(a.brand||'')===q.brand);
+   if(matches.length===1) index=matches[0].i;
+  }
+  if(index<0){alert('Düzenlenecek kayıt güvenli biçimde eşleştirilemedi. Hiçbir veri değiştirilmedi. Listeyi yenileyip tekrar deneyin.');return;}
+  const x=db.items[index];
+  const name=$('editName').value.trim();
+  if(!name){alert('Malzeme adı zorunludur.');$('editName').focus();return;}
+  const qtyRaw=$('editQty').value.trim();
+  const qty=Number(qtyRaw.replace(',','.'));
+  if(qtyRaw===''||!Number.isFinite(qty)||qty<0){alert('Miktar sıfır veya daha büyük geçerli bir sayı olmalı.');$('editQty').focus();return;}
+  const oldQty=Number(x.qty)||0;
+  
+  const delta=Number((qty-oldQty).toFixed(2));
+  const updated={...x,name,qty,kind:$('editKind').value,unit:$('editUnit').value.trim()||'adet',brand:$('editBrand').value.trim(),model:$('editModel').value.trim(),serial:$('editSerial').value.trim(),chip:$('editChip').value.trim(),stockNo:$('editStockNo').value.trim(),barcode:$('editBarcode').value.trim(),note:$('editNote').value.trim(),statusDepoda:false,statusSahada:$('editSahada').checked,statusArizali:$('editArizali').checked,statusTamirde:$('editTamirde').checked,statusKullanimDisi:$('editKullanimDisi').checked,statusNote:$('editStatusNote').value.trim(),logs:Array.isArray(x.logs)?[...x.logs]:[]};
+  updated.logs.unshift({type:delta===0?'Malzeme kartı düzeltildi':'Malzeme kartı / miktar düzeltildi',qty:Math.abs(delta),delta,date:new Date().toLocaleString('tr-TR'),person:'Ambar sorumlusu',note:delta===0?'Kart bilgileri güncellendi':`Miktar ${oldQty} → ${qty}; kart bilgileri güncellendi`,undone:false});
+  db.items[index]=updated;
+  persist();
+  closeEdit(); render();
+  alert('Malzeme kartı başarıyla güncellendi.');
+ }catch(err){
+  console.error('Kart kaydetme hatası:',err);
+  alert('Kayıt kaydedilemedi: '+(err&&err.message?err.message:'Bilinmeyen hata')+'. Veriler korunuyor.');
+ }
+}
+window.closeEdit=closeEdit;
+window.saveEdit=saveEdit;
+function archiveItem(id){
+ const x=db.items.find(a=>a.id===id&&!a.deleted);if(!x)return;
+ if(!confirm('“'+x.name+'” kaydı ana listeden kaldırılsın mı? Kayıt ve hareket geçmişi yedekte korunur.'))return;
+ x.deleted=true;x.logs.unshift({type:'Kayıt arşivlendi',qty:0,date:new Date().toLocaleString('tr-TR'),person:'Ambar sorumlusu',note:'Ana listeden kaldırıldı',undone:true});persist();render();
+}
+function permanentlyDeleteItem(id){
+ const index=db.items.findIndex(a=>String(a.id)===String(id)&&!a.deleted);
+ if(index<0)return;
+ const x=db.items[index];
+ const linkedMoves=(db.moves||[]).filter(m=>String(m.itemId)===String(x.id));
+ const hasHistory=(Array.isArray(x.logs)&&x.logs.length>0)||linkedMoves.length>0;
+ const qty=Number(x.qty)||0;
+ let message='“'+x.name+'” malzemesini arşivlemeden kalıcı olarak silmek istiyor musunuz?\n\nBu kart aktif listeden ve arşivden kaldırılacaktır. Bu işlem geri alınamaz.';
+ if(qty!==0)message+='\n\nDİKKAT: Kartta '+qty+' '+(x.unit||'adet')+' stok görünüyor.';
+ if(hasHistory)message+='\n\nBu karta ait geçmiş hareketler günlük hareket kayıtlarında korunacaktır; ancak silinen karta bağlı olarak kart ekranından görüntülenemez ve bu kart üzerinden geri alınamaz.';
+ if(!confirm(message))return;
+ // Keep the central movement ledger for audit/history; remove only the material card.
+ db.items.splice(index,1);
+ if(openHistory===String(id))openHistory='';
+ if(openCompactDetail===String(id))openCompactDetail='';
+ if(editingItemId===String(id)){try{closeEdit();}catch(e){}}
+ persist();render();
+ alert('“'+x.name+'” kartı kalıcı olarak silindi.');
+}
+function restoreBackup(ev){
+ const f=ev.target.files?.[0];if(!f)return;
+ const r=new FileReader();r.onload=()=>{try{const data=JSON.parse(r.result);if(!data||!Array.isArray(data.items))throw new Error('Geçersiz yedek');if(!confirm('Mevcut deneme verileri seçtiğiniz yedekle değiştirilecek. Devam edilsin mi?'))return;if(data.app && data.app!=='SahaPulse')throw new Error('Bu yedek dosyası Saha Pulse uygulamasına ait değil.');
+db={items:data.items.map(x=>({...x,logs:Array.isArray(x.logs)?x.logs:[]})),moves:Array.isArray(data.moves)?data.moves:[]};persist();render();renderDaily();alert('Yedek geri yüklendi.');}catch(e){alert('Yedek okunamadı: '+e.message);}finally{ev.target.value='';}};r.readAsText(f);
+}
+
+function backup(){
+ const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='SahaPulse_Deneme_Yedegi.json';a.click();URL.revokeObjectURL(a.href);
+}
+function getFilteredItems(){
+ const q=norm($('search').value.trim());
+ const rows=db.items.filter(x=>!x.deleted&&(activeFilter!=='electric'||x.kind==='electric')&&(activeFilter!=='faulty'||isFault(x))&&(activeFilter!=='out'||Number(x.qty)===0)&&(!q||[x.name,x.brand,x.model,x.serial,x.chip,x.stockNo,x.barcode,x.note].map(norm).join(' ').includes(q)));
+ const sort=$('sortItems').value;rows.sort((a,b)=>sort==='qtyDesc'?(b.qty-a.qty)||a.name.localeCompare(b.name,'tr'):sort==='qtyAsc'?(a.qty-b.qty)||a.name.localeCompare(b.name,'tr'):a.name.localeCompare(b.name,'tr'));return rows;
+}
+async function exportFilteredItemsCsv(){
+ const rows=getFilteredItems();
+ if(!rows.length)return alert('Aktarılacak malzeme bulunamadı.');
+ // Gerçek .xlsx üretimi için SheetJS kullanılır; HTML tablosu .xls olarak adlandırılmaz.
+ if(!window.XLSX){
+  try{
+   await new Promise((resolve,reject)=>{
+    const script=document.createElement('script');
+    script.src='https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';
+    script.onload=resolve;script.onerror=()=>reject(new Error('Excel kütüphanesi yüklenemedi.'));
+    document.head.appendChild(script);
+   });
+  }catch(e){alert('Gerçek Excel dosyası oluşturulamadı. İnternet bağlantısını kontrol edip tekrar deneyin.');return;}
+ }
+ const head=['Malzeme adı','Marka / Model','Seri No / Çip No','Miktar','Arıza açıklaması'];
+ const data=rows.map(x=>[
+  x.name||'',
+  [x.brand,x.model].filter(Boolean).join(' / '),
+  [x.serial?'Seri: '+x.serial:'',x.chip?'Çip: '+x.chip:''].filter(Boolean).join(' / '),
+  [x.qty,x.unit].filter(v=>v!==''&&v!==null&&v!==undefined).join(' '),
+  x.fault||''
+ ]);
+ const ws=XLSX.utils.aoa_to_sheet([head,...data]);
+ ws['!cols']=[{wch:34},{wch:30},{wch:32},{wch:12},{wch:48}];
+ ws['!autofilter']={ref:ws['!ref']};
+ const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Malzeme Listesi');
+ const filterName=({all:'Tum_Malzemeler',electric:'Elektrikli',faulty:'Arizali',out:'Stoksuz'})[activeFilter]||'Filtre';
+ XLSX.writeFile(wb,'SahaPulse_'+filterName+'_'+new Date().toISOString().slice(0,10)+'.xlsx',{compression:true});
+}
+function toggleDailyDateMode(){
+ const all=$('dailyDateMode').value==='all';
+ $('dailyDateWrap').classList.toggle('hidden',all);
+}
+function getDailyFiltered(){
+ const mode=$('dailyDateMode')?.value||'day';
+ const date=$('dailyDate').value||todayLocal(),type=$('dailyType').value,kind=$('dailyKind').value,q=norm($('dailySearch').value);
+ return (db.moves||[]).filter(m=>{
+  if(m.undone||m.deleted)return false;
+  if(mode!=='all'&&m.date!==date)return false;
+  if(type!=='all'&&m.type!==type)return false;
+  if(kind!=='all'&&(kind==='electric'?m.kind!=='electric':m.kind==='electric'))return false;
+  if(q){
+   const item=(db.items||[]).find(x=>x.id===m.itemId)||{};
+   const haystack=[m.itemName,m.person,m.location,m.note,item.brand,item.model,item.serial,item.chip,item.stockNo,item.barcode].map(norm).join(' ');
+   if(!haystack.includes(q))return false;
+  }
+  return true;
+ }).sort((a,b)=>(b.date||'').localeCompare(a.date||'')||(b.createdAt||'').localeCompare(a.createdAt||''));
+}
+function renderDaily(){
+ if(!$('dailyDate'))return;
+ const rows=getDailyFiltered(),mode=$('dailyDateMode')?.value||'day';
+ $('dailyCount').textContent=rows.length+' hareket bulundu · '+(mode==='all'?'Tüm tarihler':($('dailyDate').value||todayLocal()));
+ $('dailyRows').innerHTML=rows.map(m=>{const it=(db.items||[]).find(x=>String(x.id)===String(m.itemId))||{};const brand=m.brand??it.brand,model=m.model??it.model,serial=m.serial??it.serial,chip=m.chip??it.chip;const identity=[brand?'Marka: '+brand:'',model?'Model: '+model:'',serial?'Seri No: '+serial:'',chip?'Çip No: '+chip:''].filter(Boolean).join(' · ');return `<tr><td>${esc(m.date)}</td><td>${esc((m.createdAt||'').match(/\b\d{1,2}:\d{2}(?::\d{2})?\b/)?.[0]||'—')}</td><td>${esc(m.type)}</td><td>${esc(m.reason||'—')}</td><td><b>${esc(m.itemName)}</b>${identity?`<div class="muted">${esc(identity)}</div>`:''}</td><td>${esc(m.qty)} ${esc(m.unit)}</td><td>${esc(m.person)}</td><td>${esc(m.location)}</td><td>${esc(m.note)}</td><td><div class="actions" style="margin:0;min-width:150px"><button onclick="openMoveEdit('${m.id}')">Düzenle</button><button class="danger" onclick="undoDailyMove('${m.id}')">Geri al</button><button onclick="deleteDailyMove('${m.id}')">Sil</button></div></td></tr>`;}).join('');
+ $('dailyEmpty').classList.toggle('hidden',rows.length>0);
+}
+function findMove(id){return (db.moves||[]).find(m=>String(m.id)===String(id));}
+function openMoveEdit(id){
+ const m=findMove(id);if(!m||m.undone||m.deleted)return alert('Düzenlenecek aktif hareket bulunamadı.');
+ $('moveEditId').value=String(m.id);$('moveEditType').value=m.type;$('moveEditQty').value=m.qty;$('moveEditDate').value=m.date;$('moveEditPerson').value=m.person||'';$('moveEditLocation').value=m.location||'';$('moveEditNote').value=m.note||'';
+ updateMoveEditReasons(m.reason);$('moveEditModal').classList.remove('hidden');
+}
+function closeMoveEdit(){$('moveEditModal').classList.add('hidden');}
+function updateMoveEditReasons(selected){
+ const out=$('moveEditType').value==='Çıkış';const opts=out?['Sahaya gönderildi','Tamire gönderildi']:['Sahadan iade alındı','Tamirden teslim alındı','Satın alma / yeni malzeme'];
+ $('moveEditReason').innerHTML=opts.map(v=>`<option value="${v}">${v}</option>`).join('');if(selected&&opts.includes(selected))$('moveEditReason').value=selected;
+}
+function saveMoveEdit(){
+ const m=findMove($('moveEditId').value);if(!m||m.undone||m.deleted)return alert('Hareket artık aktif değil.');
+ const x=db.items.find(a=>String(a.id)===String(m.itemId));if(!x)return alert('Malzeme kartı bulunamadı; işlem güvenlik için durduruldu.');
+ const type=$('moveEditType').value,reason=$('moveEditReason').value,qty=Number($('moveEditQty').value),date=$('moveEditDate').value,person=$('moveEditPerson').value.trim(),location=$('moveEditLocation').value.trim(),note=$('moveEditNote').value.trim();
+ if(!Number.isFinite(qty)||qty<=0||!date||!person||!location)return alert('Miktar, tarih, kişi ve konum alanlarını kontrol edin.');
+ if(isIntegerUnit(x.unit)&&!Number.isInteger(qty))return alert('Bu birimde miktar tam sayı olmalıdır.');
+ const oldDelta=Number(m.stockEffect??(m.type==='Giriş'?m.qty:-m.qty)),newDelta=type==='Giriş'?qty:-qty,change=Number((newDelta-oldDelta).toFixed(2)),next=Number((Number(x.qty||0)+change).toFixed(2));
+ if(next<0)return alert('Bu düzeltme mevcut stoku eksiye düşürür. Önce sonraki hareketleri kontrol edin.');
+ if(!confirm('Hareket bilgileri düzeltilecek ve stok farkı uygulanacak. Devam edilsin mi?'))return;
+ x.qty=next;m.type=type;m.reason=reason;m.qty=qty;m.unit=x.unit;m.date=date;m.person=person;m.location=location;m.note=note;m.stockEffect=newDelta;m.editedAt=new Date().toLocaleString('tr-TR');
+ const linked=(x.logs||[]).find(z=>String(z.movementId)===String(m.id));if(linked){linked.type=type;linked.reason=reason;linked.qty=qty;linked.delta=newDelta;linked.date=date;linked.person=person;linked.location=location;linked.note=note;linked.editedAt=m.editedAt;}
+ // If this is the latest active movement, keep the status flags consistent with its corrected reason.
+ const latest=(db.moves||[]).filter(z=>String(z.itemId)===String(x.id)&&!z.undone&&!z.deleted).sort((a,b)=>(a.date||'').localeCompare(b.date||'')||(a.createdAt||'').localeCompare(b.createdAt||'' )).at(-1);
+ if(latest&&String(latest.id)===String(m.id)){
+  if(reason==='Sahaya gönderildi'){x.statusSahada=true;x.statusTamirde=false;x.statusKullanimDisi=false;}
+  else if(reason==='Tamire gönderildi'){x.statusTamirde=true;x.statusSahada=false;x.statusKullanimDisi=false;}
+  else if(reason==='Sahadan iade alındı')x.statusSahada=false;
+  else if(reason==='Tamirden teslim alındı')x.statusTamirde=false;
+ }
+ persist();closeMoveEdit();render();renderDaily();alert('Hareket düzeltildi. Stok farkı uygulandı.');
+}
+function undoDailyMove(id){
+ const m=findMove(id);if(!m||m.undone||m.deleted)return alert('Bu hareket zaten geri alınmış veya silinmiş.');
+ const x=db.items.find(a=>String(a.id)===String(m.itemId));if(!x)return alert('Malzeme kartı bulunamadı; işlem güvenlik için durduruldu.');
+ const delta=Number(m.stockEffect??(m.type==='Giriş'?m.qty:-m.qty)),next=Number((Number(x.qty||0)-delta).toFixed(2));
+ if(next<0)return alert('Geri alma stok miktarını eksiye düşürür. Önce sonraki hareketleri kontrol edin.');
+ if(!confirm('Bu hareket geri alınacak. Stok miktarı ters yönde düzeltilecek; kayıt geçmişte geri alınmış olarak kalacak. Devam edilsin mi?'))return;
+ x.qty=next;m.undone=true;m.undoneAt=new Date().toLocaleString('tr-TR');
+ const linked=(x.logs||[]).find(z=>String(z.movementId)===String(m.id));if(linked)linked.undone=true;
+ x.logs.unshift({type:'Hareket geri alma',qty:Math.abs(delta),delta:0,date:todayLocal(),person:'Ambar sorumlusu',note:'Geri alınan işlem: '+m.type+' · '+(m.reason||''),undone:true});
+ persist();render();renderDaily();
+}
+function deleteDailyMove(id){
+ const m=findMove(id);if(!m||m.undone||m.deleted)return alert('Yalnızca aktif hareket kaydı silinebilir.');
+ if(!confirm('Bu kayıt geçmişten silinecek. Stok miktarı DEĞİŞMEYECEK. Stok etkisini de geri almak istiyorsanız önce “Geri al” seçeneğini kullanın. Devam edilsin mi?'))return;
+ m.deleted=true;m.deletedAt=new Date().toLocaleString('tr-TR');persist();renderDaily();
+}
+function downloadMovementBackup(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='SahaPulse_Hareket_Yedegi_'+todayLocal()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function deleteAllMoves(){
+ const active=(db.moves||[]).filter(m=>!m.deleted);if(!active.length)return alert('Silinecek hareket kaydı yok.');
+ const phrase=prompt('Bu işlem tüm hareket geçmişini temizler; stok miktarlarına dokunmaz. Önce JSON yedeği indirilecektir. Onay için TAMAMEN SİL yazın:');if(phrase!=='TAMAMEN SİL')return alert('İşlem iptal edildi.');
+ downloadMovementBackup();db.moves.forEach(m=>{m.deleted=true;m.deletedAt=new Date().toLocaleString('tr-TR');});
+ db.items.forEach(x=>(x.logs||[]).forEach(z=>{if(z.movementId)z.deleted=true;}));persist();render();renderDaily();alert('Hareket kayıtları temizlendi. Stok miktarları korundu. İndirilen JSON dosyası yedektir.');
+}
+function exportDailyCsv(){
+ const rows=getDailyFiltered();if(!rows.length)return alert('Aktarılacak hareket bulunamadı.');
+ const head=['Tarih','Saat','İşlem','İşlem Nedeni','Malzeme','Marka','Model','Seri No','Çip No','Miktar','Birim','Kime / Tedarikçi','Nereye / Saha','Açıklama'];
+ const csv=[head,...rows.map(m=>{const it=(db.items||[]).find(x=>String(x.id)===String(m.itemId))||{};return [m.date,(m.createdAt||'').match(/\b\d{1,2}:\d{2}(?::\d{2})?\b/)?.[0]||'',m.type,m.reason||'',m.itemName,m.brand??it.brand??'',m.model??it.model??'',m.serial??it.serial??'',m.chip??it.chip??'',m.qty,m.unit,m.person,m.location,m.note];})].map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n');
+ const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='SahaPulse_Gunluk_Hareketler_'+(($('dailyDateMode')?.value==='all')?'Tum_Tarihler':($('dailyDate').value||'').replace(/-/g,''))+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+$('dailyDate').value=todayLocal();
+updateMoveLabels();toggleDailyDateMode();
+
+render();renderDaily();
+if(!__whHadLocalData){const rb=document.getElementById('recoverLocalCopyBtn');if(rb)rb.style.display='inline-block';}
+
+// WorkHub Esas 1: every persist writes localStorage and a second IndexedDB snapshot.
+window.addEventListener('pagehide',()=>{try{localStorage.setItem(STORE,JSON.stringify(db));}catch(e){}});
+
+// WorkHub 2.0 TEST: ayrı dil/tema tercihleri; ana sürüm ayarlarına dokunmaz.
+const WH_TEST_SETTINGS_KEY='saha_pulse_test_25_settings';
+function openSettingsPanel(){
+ const prefs=JSON.parse(localStorage.getItem(WH_TEST_SETTINGS_KEY)||'{}');
+ const lang=document.getElementById('whLanguage'),theme=document.getElementById('whTheme');
+ if(lang)lang.value=prefs.language||'tr'; if(theme)theme.value=prefs.theme||'default';
+ const overlay=document.getElementById('settingsOverlay');if(overlay)overlay.style.display='flex';
+}
+function closeSettingsPanel(){const overlay=document.getElementById('settingsOverlay');if(overlay)overlay.style.display='none';}
+function applyWorkHubTheme(theme){document.body.dataset.theme=theme==='default'?'':theme;}
+function saveSahaPulseSettings(){
+ const prefs={language:document.getElementById('whLanguage').value,theme:document.getElementById('whTheme').value};
+ localStorage.setItem(WH_TEST_SETTINGS_KEY,JSON.stringify(prefs)); document.documentElement.lang=prefs.language; applyWorkHubTheme(prefs.theme);
+ const note=document.getElementById('whSettingsNote');
+ if(note)note.textContent=prefs.language==='ru'?'Настройки сохранены отдельно для тестовой версии. Полный перевод интерфейса будет добавлен на следующем этапе.':prefs.language==='en'?'Settings saved separately for this test version. Full interface translation will be completed in the next development step.':'Tercihler bu test sürümünde ayrı kaydedildi. Tüm ekranların çevirisi sonraki geliştirme adımında tamamlanacaktır.';
+ closeSettingsPanel();
+}
+(function loadWorkHubSettings(){try{const p=JSON.parse(localStorage.getItem(WH_TEST_SETTINGS_KEY)||'{}');document.documentElement.lang=p.language||'tr';applyWorkHubTheme(p.theme||'default');}catch(e){}})();
+
+// WorkHub PWA: app shell is cached for offline opening; transaction data remains in device storage.
+(function initWorkHubPWA(){
+ const net=document.getElementById('netState');
+ const storage=document.getElementById('storageState');
+ function updateNet(){ if(net) net.textContent=navigator.onLine?'Çevrimiçi':'Çevrimdışı · Kayıtlar cihazda tutuluyor'; }
+ window.addEventListener('online',updateNet); window.addEventListener('offline',updateNet); updateNet();
+ if(navigator.storage && navigator.storage.persist){
+   navigator.storage.persist().then(ok=>{ if(storage) storage.textContent=ok?'Kalıcı cihaz depolaması etkin':'Tarayıcı depolaması etkin'; }).catch(()=>{ if(storage) storage.textContent='Cihaz depolaması'; });
+ } else if(storage){ storage.textContent='Cihaz depolaması'; }
+ if('serviceWorker' in navigator && location.protocol.startsWith('http')){
+   window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').then(()=>{if(storage)storage.textContent+=' · Çevrimdışı uygulama hazır';}).catch(()=>{if(storage)storage.textContent='Çevrimdışı önbellek kurulamadı';}));
+ }
+})();
+
+// Firebase modülüne klasik WorkHub verisini güvenli biçimde açan köprü.
+window.WorkHubDataBridge = {
+  snapshot: () => JSON.stringify({items: db.items || [], moves: db.moves || []}),
+  restore: (data) => {
+    if (!data || !Array.isArray(data.items) || !Array.isArray(data.moves)) {
+      throw new Error('Bulut yedeğinin kayıt yapısı geçersiz.');
+    }
+    if (data.items.length < 1) throw new Error('Bulut yedeğinde malzeme kaydı bulunamadı; mevcut kayıtlar korunuyor.');
+    db = {items: data.items, moves: data.moves};
+    persist(); render(); renderDaily();
+  }
+};
+</script>
+<button type="button" id="backupFab" class="backup-fab" onclick="toggleBackupSheet()" title="Yedekleme ve Kurtarma" aria-label="Yedekleme ve Kurtarma">💾<span class="fab-dot" id="backupFabDot"></span></button>
+<div id="backupSheet" class="backup-sheet hidden" role="dialog" aria-label="Otomatik, Manuel ve Google Drive Yedek">
+ <div class="backup-sheet-head"><span>💾 Saha Pulse Yedek Merkezi</span><button type="button" onclick="closeBackupSheet()" style="padding:4px 9px;font-size:13px">✕</button></div>
+ <div class="backup-sheet-meta" id="backupSheetMeta">Her giriş/çıkış ve kart işleminden sonra otomatik yerel yedek alınır.</div>
+ <div class="backup-sheet-actions">
+  <button type="button" class="primary" onclick="manualBackupNow()">🔄 Şimdi Manuel Yedekle &amp; Güncelle</button>
+  <button type="button" onclick="backupDedicatedJson()">⬇️ Ayrı Yedek İndir (SahaPulse_Ozel_Yedek.json)</button>
+  <button type="button" onclick="$('restoreFile').click();closeBackupSheet()">📂 Yedekten Geri Yükle (.json)</button>
+  <button type="button" onclick="recoverFromSafetyVault();closeBackupSheet()">🛡️ Son Otomatik Kopyadan Kurtar</button>
+ </div>
+ <div class="backup-drive-box">
+  <div style="font-weight:800;color:#10243b">☁️ Google Drive Yedeği (WorkHub'dan Ayrı Dosya)</div>
+  <div class="muted" style="font-size:12.5px">Dosya adı: <b>SahaPulse_Ozel_Yedek.json</b> · Kredi/sunucu gerektirmez.</div>
+  <input id="spGdriveClientId" type="text" placeholder="Google OAuth Client ID (isteğe bağlı)" onchange="saveSpDriveConfig()">
+  <div class="backup-drive-row"><input id="spGdriveAutoAfterMove" type="checkbox" onchange="saveSpDriveConfig()"><label for="spGdriveAutoAfterMove" style="margin:0;font-size:13px">Her hareket sonrası Drive'a da yedekle</label></div>
+  <div class="backup-sheet-actions" style="margin-top:8px">
+   <button type="button" onclick="syncSahaPulseToGDrive()">☁️ Google Drive'a Kaydet / Güncelle</button>
+   <button type="button" onclick="restoreSahaPulseFromGDrive()">📥 Google Drive'dan Geri Yükle</button>
+  </div>
+  <div id="spGdriveStatus" class="muted" style="font-size:12.5px;margin-top:6px">Yerel yedek aktif · Drive bağlantısı bekleniyor.</div>
+ </div>
+</div>
+<script>
+const SP_DRIVE_CFG_KEY='saha_pulse_gdrive_cfg_v1';
+const SP_DRIVE_FILE_NAME='SahaPulse_Ozel_Yedek.json';
+let lastAutoBackupTime='';
+let spGdriveToken='';
+
+function loadSpDriveConfig(){
+ try{return JSON.parse(localStorage.getItem(SP_DRIVE_CFG_KEY)||'{}');}catch(e){return {};}
+}
+function saveSpDriveConfig(){
+ const cid=($('spGdriveClientId')?.value||'').trim();
+ const autoSync=!!$('spGdriveAutoAfterMove')?.checked;
+ localStorage.setItem(SP_DRIVE_CFG_KEY,JSON.stringify({clientId:cid,autoSync}));
+}
+function setSpDriveStatus(msg){
+ const el=$('spGdriveStatus');
+ if(el)el.textContent=msg;
+}
+function backupDedicatedJson(){
+ const payload={
+  app:'SahaPulse',
+  isolatedFromWorkHub:true,
+  savedAt:new Date().toISOString(),
+  items:db.items||[],
+  moves:db.moves||[]
+ };
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+ const a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);
+ a.download=SP_DRIVE_FILE_NAME;
+ a.click();
+ setTimeout(()=>URL.revokeObjectURL(a.href),1200);
+ updateBackupStatusUI(true);
+}
+function updateBackupStatusUI(justSaved){
+ const fab=$('backupFab');
+ const meta=$('backupSheetMeta');
+ const nowStr=new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+ if(justSaved) lastAutoBackupTime=nowStr;
+ if(fab){
+  fab.classList.add('syncing');
+  setTimeout(()=>fab.classList.remove('syncing'),500);
+ }
+ if(meta){
+  const itemCnt=(db.items||[]).filter(x=>!x.deleted).length;
+  const moveCnt=(db.moves||[]).filter(m=>!m.deleted).length;
+  meta.innerHTML='<b>Oto yedek aktif</b> · Son kayıt: <b>'+(lastAutoBackupTime||nowStr)+'</b><br>'+itemCnt+' malzeme · '+moveCnt+' hareket cihaz + ikinci kasada.';
+ }
+}
+function toggleBackupSheet(){
+ const s=$('backupSheet');
+ if(!s)return;
+ const cfg=loadSpDriveConfig();
+ if($('spGdriveClientId') && !$('spGdriveClientId').value && cfg.clientId) $('spGdriveClientId').value=cfg.clientId;
+ if($('spGdriveAutoAfterMove')) $('spGdriveAutoAfterMove').checked=!!cfg.autoSync;
+ updateBackupStatusUI(false);
+ s.classList.toggle('hidden');
+}
+function closeBackupSheet(){
+ const s=$('backupSheet');
+ if(s)s.classList.add('hidden');
+}
+function manualBackupNow(){
+ persist();
+ updateBackupStatusUI(true);
+ const meta=$('backupSheetMeta');
+ if(meta) meta.innerHTML='✅ <b>Manuel yedek güncellendi!</b> ('+lastAutoBackupTime+')<br>Tüm giriş, çıkış ve malzeme değişiklikleri yerel kasaya yazıldı.';
+ const cfg=loadSpDriveConfig();
+ if(cfg.clientId) syncSahaPulseToGDrive(true);
+}
+async function ensureSpGdriveToken(){
+ saveSpDriveConfig();
+ const cfg=loadSpDriveConfig();
+ if(!cfg.clientId){
+  setSpDriveStatus('Client ID girilmedi; "Ayrı Yedek İndir" ile Drive klasörüne kaydedebilirsin.');
+  return null;
+ }
+ if(spGdriveToken)return spGdriveToken;
+ if(!window.google?.accounts?.oauth2){
+  await new Promise((resolve,reject)=>{
+   const sc=document.createElement('script');
+   sc.src='https://accounts.google.com/gsi/client';
+   sc.onload=resolve;
+   sc.onerror=()=>reject(new Error('Google kimlik servisi yüklenemedi.'));
+   document.head.appendChild(sc);
+  });
+ }
+ return new Promise((resolve,reject)=>{
+  const tc=window.google.accounts.oauth2.initTokenClient({
+   client_id:cfg.clientId,
+   scope:'https://www.googleapis.com/auth/drive.file',
+   callback:(resp)=>{
+    if(resp && resp.access_token){
+     spGdriveToken=resp.access_token;
+     resolve(spGdriveToken);
+    }else{
+     reject(new Error(resp?.error||'Google Drive izni alınamadı.'));
+    }
+   }
+  });
+  tc.requestAccessToken();
+ });
+}
+async function findSpDriveFileId(token){
+ const q=encodeURIComponent("name='"+SP_DRIVE_FILE_NAME+"' and trashed=false");
+ const res=await fetch('https://www.googleapis.com/drive/v3/files?q='+q+'&fields=files(id,name,modifiedTime)',{
+  headers:{Authorization:'Bearer '+token}
+ });
+ if(!res.ok)throw new Error('Drive dosya araması başarısız ('+res.status+').');
+ const data=await res.json();
+ return data.files?.[0]?.id||null;
+}
+async function syncSahaPulseToGDrive(silent){
+ try{
+  const token=await ensureSpGdriveToken();
+  if(!token)return;
+  setSpDriveStatus('Google Drive yedekleniyor…');
+  const fileId=await findSpDriveFileId(token);
+  const bodyObj={
+   app:'SahaPulse',
+   isolatedFromWorkHub:true,
+   savedAt:new Date().toISOString(),
+   items:db.items||[],
+   moves:db.moves||[]
+  };
+  const bodyStr=JSON.stringify(bodyObj,null,2);
+  let res;
+  if(fileId){
+   res=await fetch('https://www.googleapis.com/upload/drive/v3/files/'+encodeURIComponent(fileId)+'?uploadType=media',{
+    method:'PATCH',
+    headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},
+    body:bodyStr
+   });
+  }else{
+   const meta={name:SP_DRIVE_FILE_NAME,mimeType:'application/json'};
+   const form=new FormData();
+   form.append('metadata',new Blob([JSON.stringify(meta)],{type:'application/json'}));
+   form.append('file',new Blob([bodyStr],{type:'application/json'}));
+   res=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',{
+    method:'POST',
+    headers:{Authorization:'Bearer '+token},
+    body:form
+   });
+  }
+  if(!res.ok)throw new Error('Drive yükleme hatası ('+res.status+').');
+  const t=new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
+  setSpDriveStatus('☁️ Drive güncel ('+t+') · '+SP_DRIVE_FILE_NAME);
+  if(!silent)alert('Saha Pulse yedeği WorkHub ile karışmadan Google Drive\'a ('+SP_DRIVE_FILE_NAME+') kaydedildi.');
+ }catch(e){
+  setSpDriveStatus('Drive uyarısı: '+(e.message||e));
+  if(!silent)alert('Google Drive yedekleme yapılamadı: '+(e.message||e));
+ }
+}
+async function restoreSahaPulseFromGDrive(){
+ try{
+  const token=await ensureSpGdriveToken();
+  if(!token)return;
+  setSpDriveStatus('Google Drive yedeği aranıyor…');
+  const fileId=await findSpDriveFileId(token);
+  if(!fileId)throw new Error(SP_DRIVE_FILE_NAME+' dosyası Drive\'da bulunamadı.');
+  const res=await fetch('https://www.googleapis.com/drive/v3/files/'+encodeURIComponent(fileId)+'?alt=media',{
+   headers:{Authorization:'Bearer '+token}
+  });
+  if(!res.ok)throw new Error('Drive okuma hatası ('+res.status+').');
+  const data=await res.json();
+  if(!data||!Array.isArray(data.items)||!Array.isArray(data.moves))throw new Error('Drive yedek formatı geçersiz.');
+  if(!confirm('Drive\'daki Saha Pulse yedeği mevcut cihaz kayıtlarının üzerine yazılsın mı?'))return;
+  db={items:data.items,moves:data.moves};
+  persist();render();renderDaily();
+  setSpDriveStatus('📥 Drive yedeği geri yüklendi.');
+  alert('Saha Pulse yedeği Google Drive\'dan geri yüklendi.');
+ }catch(e){
+  setSpDriveStatus('Geri yükleme hatası: '+(e.message||e));
+  alert('Drive\'dan geri yüklenemedi: '+(e.message||e));
+ }
+}
+document.addEventListener('click',e=>{
+ const s=$('backupSheet');
+ if(!s || s.classList.contains('hidden'))return;
+ if(!s.contains(e.target) && !e.target.closest('#backupFab'))closeBackupSheet();
+});
+window.WorkHubCloud={
+ queueSave:()=>{
+  updateBackupStatusUI(true);
+  const cfg=loadSpDriveConfig();
+  if(cfg.clientId && cfg.autoSync) syncSahaPulseToGDrive(true);
+ }
+};
+setTimeout(()=>updateBackupStatusUI(true),200);
+</script>
+
+<div id="rowColorPopover" class="color-popover hidden" role="dialog" aria-label="Satır rengi seç">
+ <div class="color-popover-title"><span id="colorPopoverItemName">Satır Rengi</span><button type="button" onclick="closeRowColorMenu()" style="padding:4px 8px;font-size:13px">✕</button></div>
+ <div class="color-swatches">
+  <button type="button" class="color-swatch" data-color="red" onclick="applyRowColor('red')"><span class="color-dot-preview" style="background:#ef4444"></span>Kırmızı</button>
+  <button type="button" class="color-swatch" data-color="amber" onclick="applyRowColor('amber')"><span class="color-dot-preview" style="background:#f97316"></span>Turuncu</button>
+  <button type="button" class="color-swatch" data-color="yellow" onclick="applyRowColor('yellow')"><span class="color-dot-preview" style="background:#eab308"></span>Sarı</button>
+  <button type="button" class="color-swatch" data-color="green" onclick="applyRowColor('green')"><span class="color-dot-preview" style="background:#22c55e"></span>Yeşil</button>
+  <button type="button" class="color-swatch" data-color="blue" onclick="applyRowColor('blue')"><span class="color-dot-preview" style="background:#3b82f6"></span>Mavi</button>
+  <button type="button" class="color-swatch" data-color="purple" onclick="applyRowColor('purple')"><span class="color-dot-preview" style="background:#a855f7"></span>Mor</button>
+ </div>
+ <button type="button" class="color-clear-btn" onclick="applyRowColor('')">Rengi Kaldır (Normal)</button>
+</div>
+
+</body></html>
